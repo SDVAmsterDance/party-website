@@ -182,3 +182,12 @@ input {
 	background-color: #E6D6B5;
 	border: none;
 }
+
+select {
+	font-family: kells;
+	background-color: #E6D6B5;
+	font-size: 1em;
+	color: #CB5131;
+	border: none;
+}
+
