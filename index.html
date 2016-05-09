@@ -36,6 +36,22 @@
   			}).trigger('input');
   			return this;
 		};
+		
+		// we need to fix the price on changes
+		function fixPrice() {
+			member = $("#buyer-member").val();
+			vip = $("#buyer-vip").val();
+			
+			price = 1250;
+			
+			// distinct for vip etc
+			if (member == "2") price -= 500;
+			if (vip == "2") price += 750;
+			
+			// set the pprice
+			$("#price-value").text((price / 100).toFixed(2));
+			console.log(price);
+		}
 
 		// we enable auto-resizing
 		$("input").autoresize();
@@ -59,6 +75,29 @@
     		// we get out the form and submit button
     		$("#story-form").removeClass("hidden")
     		$("#submit-button").removeClass("hidden");
+    	});
+		
+		$("#buyer-vip").on('change', function(e) {
+			fixPrice();
+		});
+		
+		$("#buyer-member").on('change', function(e) {
+			fixPrice();
+		});
+		
+		fixPrice();
+		
+		// install a click handler on the apply button, we want to do some nice stuff (make it look ncie)
+    	$("#submit-button").click(function(e) {
+    		// for now, we simply hide the initial story and the apply button
+    		$("#story-form").addClass("hidden");
+    		$("#submit-button").addClass("hidden");
+
+    		// correct the apply button position AGAIN
+    		$(".stories").height($("#story-confimation").outerHeight());
+
+    		// we get out the form and submit button
+    		$("#story-confirmation").removeClass("hidden")
     	});
     });
     </script>
@@ -85,7 +124,7 @@
 	</div>
 	<div id="story-form" class="story hidden"> 
 		<div class="story-internal">
-		<b><div class="calligraphy love">A</div>ttending this ball is</b> <input type="text" id="buyer-name" placeholder="Full Name" maxlength="32" /> who is <select id="buyer-member"><option value="1">a</option><option value="2">not a</option></select> member of the royal AmsterDance family would <select id="buyer-member"><option value="1">like</option><option value="2">not like</option></select> to be treated as a <div class="love">VIP</div>. Along will come ... guests NAMEN/MEMBER/VIP. 
+		<b><div class="calligraphy love">A</div>ttending this ball is</b> <input type="text" id="buyer-name" placeholder="Full Name" maxlength="32" /> who is <select id="buyer-member"><option value="1">not a</option><option value="2">a</option></select> member of the royal AmsterDance family would <select id="buyer-vip"><option value="1">not like</option><option value="2">like</option></select> to be treated as a <div class="love">VIP</div>. Along will come ... guests NAMEN/MEMBER/VIP. 
 		</div>
 		<br>
 		<div class="story-internal">
@@ -93,8 +132,14 @@
 		</div>
 		<br>
 		<div class="story-internal">
-		The grand total for the entrance to this luxurious ball would be <div id="price" class="love"><div class="eurosign">&euro;</div><div id="price-value">10,00</div></div>.
+		The grand total for the entrance to this luxurious ball would be <div id="price" class="love"><div class="eurosign">&euro;</div><div id="price-value">12,50</div></div>.
 		</div>
+	</div>
+	<div id="story-confirmation" class="story hidden"> 
+		<div class="story-internal">
+		<b><div class="calligraphy love">T</div>hank you for applying to the magical <p class="love">AmsterDancia</p> ball</b>, you will receive confirmation shortly via digital carrier pigeon.
+		</div>
+		
 	</div>
 	
 
