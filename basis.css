@@ -1,0 +1,141 @@
+@font-face {
+	font-family: "kells";
+	src: url('kells.ttf') format('truetype');
+}
+
+#content {
+	width: 100%;
+	font-family: kells;	
+}
+
+#parchment {
+	height: 100%;
+	width: 768px;
+	margin: 0 auto;
+}
+
+#title {
+	font-size: 3em;
+	margin: 0 auto;
+}
+
+#title-presents {
+	font-size: 2em;
+	margin: 0 auto;
+}
+
+#banner-title div {
+	width: 100%;
+	text-align: center;
+}
+
+#banner-title {
+	font-family: Old English Text MT, Verdana;
+	padding: 20% 0 5% 0;
+	width: 100%;
+}
+
+.wrapper {
+	width: 100%;
+	height: 100%;
+}
+
+.love {
+	color: #CB5131;
+	display: inline;
+}
+
+#price {
+	font-size: 1.5em;
+	font-family: Old English Text MT;
+	display: inline-block;
+}
+
+#price div {
+	float: left;
+}
+
+.story-internal {
+	top: 0;
+	width: 60%;
+	margin: 0 auto;
+	font-size: 1.5em;
+	transition: opacity 1s ease-in;
+}
+
+.stories {
+	position: relative;
+	transition: height 1s ease-in;
+}
+
+.stories .story {
+	position: absolute;
+	top: 0px;
+	transition: opacity 2s ease-in;
+}	
+
+#buttons {
+	position: relative;
+}
+
+#buttons .link {
+	position: absolute;
+	top: 0px;
+	width: 100%;
+}
+	
+b {
+	font-weight: bold;
+}
+
+body {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background-color: #E6D6B5;
+}
+
+#date {
+	color: #D47941;
+	font-size: 2em;
+	padding: 1%;
+}
+
+.calligraphy {
+	font-size: 3em;
+}
+
+.capital {
+	font-size: 2em;
+}
+
+.link {
+	margin: auto;
+	width: 50%;
+	font-family: Old English Text MT;
+	text-align: center;
+	padding: 5%;
+	font-size: 2.5em;
+	text-decoration: underline;
+}
+
+.hidden {
+	opacity: 0;
+	transition: opacity 1s ease-in;
+	z-index: -100;
+}
+
+.link:hover {
+	cursor: pointer;
+}
+
+input {
+	font-family: kells;	
+	font-weight: bold;
+	font-size: 1em;
+	color: #CB5131;
+	background-color: #E6D6B5;
+	border: none;
+}
