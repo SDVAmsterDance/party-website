@@ -102,6 +102,47 @@ function fixButton() {
 
 // function to validate the form and make sure every value is ok
 function checkForm() {
-    // TODO, check the form and validate correctness. Return false if incorrect and supply some feedback, otherwise true.
+    data = {guests: []};
+    
+    //Extract name, checking length and store in data. 
+    name = $("#buyer-name").val();
+    if (name.length == 0) { $("#buyer-name").addClass("error"); return false; }
+    else $("#buyer-name").removeClass("error");
+    data["name"] = name;
+    
+    // get the extra guests
+    guests = $("#buyer-guests-input").children();
+    
+    // go over all the guests
+    for (i = 0; i < guests.length; i++) {
+        // this holds whether or not the buyer is a member
+        name = $(guests[i]).find(".buyer-name").val();
+        member = $(guests[i]).find(".buyer-member").val();
+        vip = $(guests[i]).find(".buyer-vip").val();
+        
+        //Extract name, checking length and store in data. 
+        if (name.length == 0) {$(guests[i]).find(".buyer-name").addClass("error"); return false;}
+        else $(guests[i]).find(".buyer-name").removeClass("error");
+        data["guests"].push({name: name, member: (member=="2"), vip: (vip=="2")});                
+    }
+    
+    //rfc2822 compliant
+    re = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
+    
+    //Extract email, checking length and store in data. 
+    email = $("#buyer-email").val();
+    if (email.length == 0 || !re.test(email))  { $("#buyer-email").addClass("error"); return false; }
+    else $("#buyer-email").removeClass("error");
+    data["email"] = email;
+
+    //Extract if the buyer is a member or not and if he/she would like to be treated as a vip (and store in data)
+    member = $("#buyer-member").val();
+    vip = $("#buyer-vip").val();
+    data["member"] = (member == "2");
+    data["vip"] = (vip == "2");
+    
+    console.log(data);
+    
+    
     return true;
 }
