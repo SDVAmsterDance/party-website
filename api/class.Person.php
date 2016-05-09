@@ -31,9 +31,9 @@ class Person implements JsonSerializable {
         $this->name = isset($arr['name']) ? substr((string)$arr["name"], 0, 32) : "";
         $this->member = $arr["member"] == true;
         $this->vip = $arr["vip"] == true;   
-
+    
         // make sure the name is filled out, otherwise die
-        if ($this->name < 3) die('empty field');
+        if (strlen($this->name) < 3) die('empty field');
     }
     
     /**
@@ -47,6 +47,7 @@ class Person implements JsonSerializable {
      *  Serialize the json
      */
     public function jsonSerialize() {
-        // serialize it to the correct form 
+        // serialize it to the correct form
+        return array("name" => $this->name, "member" => $this->member, "vip" => $this->vip); 
     }
 }

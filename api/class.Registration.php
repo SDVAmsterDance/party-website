@@ -48,7 +48,7 @@ class Registration implements JsonSerializable {
         $this->email = isset($arr["email"]) ? substr((string) $arr["email"], 0, 32) : "";
         
         // make sure email is filled out 
-        if ($this->email < 3) die('empty field');
+        if (strlen($this->email) < 3) die('empty field');
     }
 
     /**
@@ -68,19 +68,41 @@ class Registration implements JsonSerializable {
         $dbh = new PDO('mysql:host='.DB_HOST.';dbname='.DB_DATABASE, DB_USER, DB_PASSWORD);  
 
         // make the statement
-        $stmt = $dbh->prepare("INSERT INTO registrations (hash, json) VALUES (:hash, :json)");
+        $stmt = $dbh->prepare("INSERT INTO registrations (hash, json, email, guests, vips) VALUES (:hash, :json, :email, :guests, :vips)");
 
         // create the json
         $json = json_encode($this);
-
+    
         // bind the parameters 
         $stmt->bindParam(':hash', md5($json . time()));
         $stmt->bindParam(':json', $json);
+        $stmt->bindParam(':email', $this->email);
+        $stmt->bindParam(':guests', count($this->guests));
+        $stmt->bindParam(':vips', count($this->vips()));
 
         // execute the statement
         $stmt->execute();
     }
     
+    /**
+     *  Retrieve the vips
+     */
+    public function vips() {
+        // get the very important people
+        $vips = array();
+        
+        // we may also be a vip
+        if ($this->buyer->vip) array_push($vips, $this->buyer);
+            
+        // find the vips
+        foreach ($this->guests as $guest)
+            if ($guest->vip) array_push($vips, $guest);
+
+
+        // return the array
+        return $vips; 
+    }
+
     /**
      *  Retrieve the guest arrays
      */
@@ -119,9 +141,12 @@ class Registration implements JsonSerializable {
         $stmt->execute();
     } 
 
+    /**
+     *  Give json_encode correct output
+     */
     public function jsonSerialize() {
         // serialize it to the correct form 
-        array();
+        return array_merge(json_decode(json_encode($this->buyer()), true), array("guests" => $this->guests, "email" => $this->email, "paid" => $this->paid));
     }
 }
 
