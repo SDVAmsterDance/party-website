@@ -4,14 +4,6 @@ $(function () {
 
     // we enable auto-resizing
     $("input").autoresize();
-    
-    if (window.location.hash != "#form") {
-        // for now, we simply hide the initial story and the apply button
-        $("#story-initial").removeClass("hidden");
-        $("#apply-button").removeClass("hidden");
-    } else {
-        $("#apply-button").click();
-    }
 
     // correct the apply button position
     $(".stories").children().each(function() { if (!$(this).hasClass("hidden")) $(".stories").height($(this).outerHeight()); });
@@ -51,6 +43,16 @@ $(function () {
 
     // entirely recalculate the price on any change
     $(".option").on('change', function(e) { fixPrice(); });
+    
+    // now that the handlers are setup, we can do some navigation
+    if (window.location.hash != "#form") {
+        // for now, we simply hide the initial story and the apply button
+        $("#story-initial").removeClass("hidden");
+        $("#apply-button").removeClass("hidden");
+    } else {
+        // the apply button is 'clicked' because we go to the form directly
+        $("#apply-button").click();
+    }
 
     // we want to set the initial price based on the options.
     fixPrice();
