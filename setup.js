@@ -100,6 +100,12 @@ function fixButton() {
     $(".stories").children().each(function() { if (!$(this).hasClass("hidden")) $(".stories").height($(this).outerHeight()); });
 }
 
+// Validates email address of course.
+function validEmail(e) {
+     var filter = /^\s*[\w\-\+_]+(\.[\w\-\+_]+)*\@[\w\-\+_]+\.[\w\-\+_]+(\.[\w\-\+_]+)*\s*$/;
+     return String(e).search (filter) != -1;
+}
+
 // function to validate the form and make sure every value is ok
 function checkForm() {
     data = {guests: []};
@@ -126,12 +132,9 @@ function checkForm() {
         data["guests"].push({name: name, member: (member=="2"), vip: (vip=="2")});                
     }
     
-    //rfc2822 compliant
-    re = "[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?";
-    
     //Extract email, checking length and store in data. 
     email = $("#buyer-email").val();
-    if (email.length == 0 || !re.test(email))  { $("#buyer-email").addClass("error"); return false; }
+    if (email.length == 0 || !validEmail(email))  { $("#buyer-email").addClass("error"); return false; }
     else $("#buyer-email").removeClass("error");
     data["email"] = email;
 
@@ -141,8 +144,9 @@ function checkForm() {
     data["member"] = (member == "2");
     data["vip"] = (vip == "2");
     
-    console.log(data);
-    
+    $.post('api/register.php', {data: JSON.stringify(data)}, function(data) {
+        console.log(data);
+    });
     
     return true;
 }
