@@ -60,7 +60,11 @@
 	width: 60%;
 	margin: 0 auto;
 	font-size: 1.5em;
-	transition: opacity 1s ease-in;
+    -webkit-transition: all 1000ms ease;
+    -moz-transition: all 1000ms ease;
+    -ms-transition: all 1000ms ease;
+    -o-transition: all 1000ms ease;
+    transition: all 1000ms ease;
 }
 
 .stories {
@@ -71,7 +75,11 @@
 .stories .story {
 	position: absolute;
 	top: 0px;
-	transition: opacity 2s ease-in;
+    -webkit-transition: all 2000ms ease;
+    -moz-transition: all 2000ms ease;
+    -ms-transition: all 2000ms ease;
+    -o-transition: all 2000ms ease;
+    transition: all 2000ms ease;
 }	
 
 #buttons {
@@ -123,7 +131,11 @@ body {
 
 .hidden {
 	opacity: 0;
-	transition: opacity 1s ease-in;
+    -webkit-transition: all 1000ms ease;
+    -moz-transition: all 1000ms ease;
+    -ms-transition: all 1000ms ease;
+    -o-transition: all 1000ms ease;
+    transition: all 1000ms ease;
 	z-index: -100;
 }
 
@@ -135,6 +147,20 @@ input {
 	font-family: kells;	
 	font-weight: bold;
 	font-size: 1em;
+	color: #CB5131;
+	background-color: #E6D6B5;
+	border: none;
+    -webkit-transition: all 500ms ease;
+    -moz-transition: all 500ms ease;
+    -ms-transition: all 500ms ease;
+    -o-transition: all 500ms ease;
+    transition: all 500ms ease;
+}
+
+.txtwidth {
+	font-family: kells;	
+	font-weight: bold;
+	font-size: 1.5em;
 	color: #CB5131;
 	background-color: #E6D6B5;
 	border: none;

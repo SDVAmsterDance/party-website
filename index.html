@@ -4,102 +4,14 @@
     <title>Disney Ball</title>
     <link rel="stylesheet" type="text/css" href="reset.css"/>
     <link rel="stylesheet" type="text/css" href="basis.css"/>
-    <script src="http://code.jquery.com/jquery-latest.min.js"
-        type="text/javascript"></script>
+    <script src="http://code.jquery.com/jquery-latest.min.js" type="text/javascript"></script>
+    <script src="setup.js" type="text/javascript"></script>
+    <script src="control.js" type="text/javascript"></script>
     <meta charset="ISO-8859-1">
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script type="text/javascript">
-    function resizeInput() {
-    	$(this).attr('size', $(this).val().length);
-    }
 
-    $(function () {
-    	// fade in all the initial stuff
-    	// TODO
-
-    	// load some jquery shit (plugin)
-    	$.fn.textWidth = function(_text, _font){//get width of text with font.  usage: $("div").textWidth();
-        	var fakeEl = $('<span>').hide().appendTo(document.body).text(_text || this.val() || this.text()).css('font', _font || this.css('font')),
-        	width = fakeEl.width();
-        	fakeEl.remove();
-        	return width;
-    	};
-
-		$.fn.autoresize = function(options){//resizes elements based on content size.  usage: $('input').autoresize({padding:10,minWidth:0,maxWidth:100});
- 			options = $.extend({padding:0,minWidth:0,maxWidth:10000}, options||{});
-  			$(this).on('input', function() {
-  				if ($(this).val() == "") $(this).css('width', $.fn.textWidth.call($(this), $(this).attr('placeholder')));
-  				else $(this).css('width', Math.min(options.maxWidth,Math.max(options.minWidth,$(this).textWidth() + options.padding)));
-   				// correct the apply button position AGAIN
-    			$(".stories").height($("#story-form").outerHeight());
-  			}).trigger('input');
-  			return this;
-		};
-		
-		// we need to fix the price on changes
-		function fixPrice() {
-			member = $("#buyer-member").val();
-			vip = $("#buyer-vip").val();
-			
-			price = 1250;
-			
-			// distinct for vip etc
-			if (member == "2") price -= 500;
-			if (vip == "2") price += 750;
-			
-			// set the pprice
-			$("#price-value").text((price / 100).toFixed(2));
-			console.log(price);
-		}
-
-		// we enable auto-resizing
-		$("input").autoresize();
-
-    	// for now, we simply hide the initial story and the apply button
-    	$("#story-initial").removeClass("hidden");
-    	$("#apply-button").removeClass("hidden");
-
-    	// correct the apply button position
-    	$(".stories").children().each(function() { if (!$(this).hasClass("hidden")) $(".stories").height($(this).outerHeight()); })
-
-    	// install a click handler on the apply button, we want to do some nice stuff (make it look ncie)
-    	$("#apply-button").click(function(e) {
-    		// for now, we simply hide the initial story and the apply button
-    		$("#story-initial").addClass("hidden");
-    		$("#apply-button").addClass("hidden");
-
-    		// correct the apply button position AGAIN
-    		$(".stories").height($("#story-form").outerHeight());
-
-    		// we get out the form and submit button
-    		$("#story-form").removeClass("hidden")
-    		$("#submit-button").removeClass("hidden");
-    	});
-		
-		$("#buyer-vip").on('change', function(e) {
-			fixPrice();
-		});
-		
-		$("#buyer-member").on('change', function(e) {
-			fixPrice();
-		});
-		
-		fixPrice();
-		
-		// install a click handler on the apply button, we want to do some nice stuff (make it look ncie)
-    	$("#submit-button").click(function(e) {
-    		// for now, we simply hide the initial story and the apply button
-    		$("#story-form").addClass("hidden");
-    		$("#submit-button").addClass("hidden");
-
-    		// correct the apply button position AGAIN
-    		$(".stories").height($("#story-confimation").outerHeight());
-
-    		// we get out the form and submit button
-    		$("#story-confirmation").removeClass("hidden")
-    	});
-    });
     </script>
 </head>
 <body>
@@ -124,11 +36,11 @@
 	</div>
 	<div id="story-form" class="story hidden"> 
 		<div class="story-internal">
-		<b><div class="calligraphy love">A</div>ttending this ball is</b> <input type="text" id="buyer-name" placeholder="Full Name" maxlength="32" /> who is <select id="buyer-member"><option value="1">not a</option><option value="2">a</option></select> member of the royal AmsterDance family would <select id="buyer-vip"><option value="1">not like</option><option value="2">like</option></select> to be treated as a <div class="love">VIP</div>. Along will come ... guests NAMEN/MEMBER/VIP. 
+            <b><div class="calligraphy love">A</div>ttending this ball is</b> <input type="text" id="buyer-name" placeholder="Full Name" maxlength="32" /> who is <select id="buyer-member" class="option"><option value="1">not a</option><option value="2">a</option></select> member of the royal AmsterDance family would <select id="buyer-vip" class="option"><option value="1">not like</option><option value="2">like</option></select> to be treated as a <div class="love">VIP</div>. Along will come ... guests NAMEN/MEMBER/VIP. 
 		</div>
 		<br>
 		<div class="story-internal">
-			 <div class="calligraphy love">B</div>ecause carrier pigeons have been out of order for a while, the tickets should be sent to <input type="text" id="buyer-name" placeholder="email address" maxlength="32" />. 
+			 <div class="calligraphy love">B</div>ecause carrier pigeons have been out of order for a while, the tickets should be sent to <input type="email" id="buyer-email" placeholder="email address" maxlength="32" />. 
 		</div>
 		<br>
 		<div class="story-internal">
@@ -141,7 +53,6 @@
 		</div>
 		
 	</div>
-	
 
 	</div>	
 	<div id="buttons">
