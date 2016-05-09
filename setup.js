@@ -31,6 +31,23 @@ function fixPrice() {
     // amsterdance members pay 5 euros less but vips 5 euros more.
     if (member == "2") price -= 500;
     if (vip == "2") price += 750;
+    
+    // get the extra guests
+    guests = $("#buyer-guests-input").children();
+    
+    // go over all the guests
+    for (i = 0; i < guests.length; i++) {
+        // add the price
+        price += 1250;
+        
+        // this holds whether or not the buyer is a member
+        member = $(guests[i]).find(".buyer-member").val();
+        vip = $(guests[i]).find(".buyer-vip").val();
+    
+        // amsterdance members pay 5 euros less but vips 5 euros more.
+        if (member == "2") price -= 500;
+        if (vip == "2") price += 750;
+    }
 
     // set the pprice in the correct field.
     $("#price-value").text((price / 100).toFixed(2));
@@ -38,10 +55,45 @@ function fixPrice() {
 
 // function to fix the guest list for a buyer
 function fixGuests() {
+    // get the amount
+    amount = $("#buyer-guests").val();
+
     // update whether or not it says guest or guests
-    $("#guests").text($("#buyer-guests").val() > 1 ? "s" : "");
+    $("#guests").text(amount > 1 ? "s" : "");
 
+    // don't fix if nothing to fix, but clear the element
+    if (amount == 0) {
+        $("#buyer-guests-input").html("");
+        return;
+    }
 
+    // get the template and the parent list
+    el = $("#guest-template");
+    elements = $("#buyer-guests-input");
+    
+    // check if the amount is equal to the neede amount, then do nothing
+    if (amount == elements.children().length) return;
+   
+    // it can be less or more
+    if (amount > elements.children().length) {
+        // add children
+        while (amount > elements.children().length) elements.append(el.clone().removeClass("invisible").removeClass("hidden"));
+    } else {
+        // remove last children until equal
+        while (amount < elements.children().length) elements.children().last().remove();
+    }
+    
+    // reinstall handlers because there are new elements now
+    $(".option").on('change', function(e) { fixPrice(); });
+
+    // we need to fix the button again
+    fixButton();
+    fixPrice();
+}
+
+function fixButton() {
+    // correct the apply button position
+    $(".stories").children().each(function() { if (!$(this).hasClass("hidden")) $(".stories").height($(this).outerHeight()); });
 }
 
 // function to validate the form and make sure every value is ok

@@ -6,8 +6,6 @@ $(function () {
     $("input").autoresize();
     $("#buyer-guests").autoresize({padding: 30});
 
-    // correct the apply button position
-    $(".stories").children().each(function() { if (!$(this).hasClass("hidden")) $(".stories").height($(this).outerHeight()); });
 
     // install a click handler on the apply button, we want to do some nice stuff (make it look ncie)
     $("#apply-button").click(function(e) {
@@ -54,6 +52,9 @@ $(function () {
             $("#accompanied-sentence").removeClass("hidden");    
             $("#accompanied-dot").addClass("hidden");
         }
+    
+        // fix the guests
+        fixGuests();
     });
     
     // update the guest list otherwise
@@ -74,6 +75,6 @@ $(function () {
 
     // we want to set the initial price based on the options.
     fixPrice();
-    fixGuests();
+    fixButton(); 
 });
 
