@@ -197,3 +197,12 @@ select {
 	border: none;
 }
 
+.error {
+	border: 2px solid #CB5131;
+}
+
+#time {
+	color: #D47941;
+	font-size: 1.2em;
+}
+
