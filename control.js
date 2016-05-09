@@ -4,6 +4,7 @@ $(function () {
 
     // we enable auto-resizing
     $("input").autoresize();
+    $("#buyer-guests").autoresize({padding: 30});
 
     // correct the apply button position
     $(".stories").children().each(function() { if (!$(this).hasClass("hidden")) $(".stories").height($(this).outerHeight()); });
@@ -41,6 +42,21 @@ $(function () {
         //TODO: backend
     });
 
+    // fix the buyer accompanied sentence.
+    $("#buyer-accompanied").on('change', function(e) {
+        // if not accompanied, toggle out
+        if ($(this).val() == "unaccompanied") {
+            $("#accompanied-sentence").addClass("hidden");    
+            $("#buyer-guests").val(0);    
+        } else {
+            $("#buyer-guests").val(1);    
+            $("#accompanied-sentence").removeClass("hidden");    
+        }
+    });
+    
+    // update the guest list otherwise
+    $("#buyer-guests").on('change', function() { fixGuests(); });
+
     // entirely recalculate the price on any change
     $(".option").on('change', function(e) { fixPrice(); });
     
@@ -56,5 +72,6 @@ $(function () {
 
     // we want to set the initial price based on the options.
     fixPrice();
+    fixGuests();
 });
 

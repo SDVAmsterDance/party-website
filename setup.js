@@ -36,6 +36,12 @@ function fixPrice() {
     $("#price-value").text((price / 100).toFixed(2));
 }
 
+// function to fix the guest list for a buyer
+function fixGuests() {
+    $("#guests").text($("#buyer-guests").val() > 1 ? "s" : "");
+}
+
+// function to validate the form and make sure every value is ok
 function checkForm() {
     // TODO, check the form and validate correctness. Return false if incorrect and supply some feedback, otherwise true.
     return true;
