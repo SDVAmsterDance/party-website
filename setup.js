@@ -85,6 +85,10 @@ function fixGuests() {
     
     // reinstall handlers because there are new elements now
     $(".option").on('change', function(e) { fixPrice(); });
+    
+    // also resize the new inputs
+    $("input").autoresize();
+    $("#buyer-guests").autoresize({padding: 30});
 
     // we need to fix the button again
     fixButton();
