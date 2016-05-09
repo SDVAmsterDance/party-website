@@ -48,9 +48,11 @@ $(function () {
         if ($(this).val() == "unaccompanied") {
             $("#accompanied-sentence").addClass("hidden");    
             $("#buyer-guests").val(0);    
+            $("#accompanied-dot").removeClass("hidden");
         } else {
             $("#buyer-guests").val(1);    
             $("#accompanied-sentence").removeClass("hidden");    
+            $("#accompanied-dot").addClass("hidden");
         }
     });
     

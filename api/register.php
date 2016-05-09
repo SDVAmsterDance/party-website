@@ -1,0 +1,18 @@
+<?php
+
+/**
+ *  register.php
+ *
+ *  Register an user.
+ *
+ *  @author Michael van der Werve
+ *  @copyright 2016
+ */
+
+// if the data is not set, we should stop immediately
+if (!isset($_POST['data'])) die('no data');
+
+// get the users from the data, it should be a json array
+$users = json_decode($_POST['data']);
+
+print_r($users);

@@ -38,7 +38,10 @@ function fixPrice() {
 
 // function to fix the guest list for a buyer
 function fixGuests() {
+    // update whether or not it says guest or guests
     $("#guests").text($("#buyer-guests").val() > 1 ? "s" : "");
+
+
 }
 
 // function to validate the form and make sure every value is ok
