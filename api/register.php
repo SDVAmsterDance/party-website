@@ -21,4 +21,5 @@ $users = json_decode($_POST['data'], true);
 $registration = new Registration($users);
 $registration->store();
 
+// for now, stringify the registration
 echo (string) $registration;
