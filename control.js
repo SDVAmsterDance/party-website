@@ -76,5 +76,6 @@ $(function () {
     // we want to set the initial price based on the options.
     fixPrice();
     fixButton(); 
+    fixStatus();
 });
 

@@ -10,6 +10,7 @@
 
 require_once 'config.php';
 require_once 'class.Person.php';
+require_once 'class.Status.php';
 
 class Registration implements JsonSerializable {
     /**
@@ -49,6 +50,39 @@ class Registration implements JsonSerializable {
         
         // make sure email is filled out 
         if (strlen($this->email) < 3) die('empty field');
+    
+        // check the email 
+        $this->check($this->email);
+
+        // everything is in order so far, get the status (to see if registration is still possible)
+        $status = new Status();
+
+        // make sure there are enough tickets
+        if (count($this->guests) + 1 > $status->regular()) die('too many regular tickets');
+        else if (count($this->vips()) > $status->vip()) die('too many vip tickets');
+    }
+
+    /**
+     *  Check the email
+     */
+    function check($email) {
+        // check validity
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) die('invalid email format');
+
+        // get a database connection
+        $dbh = new PDO('mysql:host='.DB_HOST.';dbname='.DB_DATABASE, DB_USER, DB_PASSWORD);  
+        
+        // make the statement
+        $stmt = $dbh->prepare("SELECT * FROM registrations WHERE email = :email");
+
+        // bind the params
+        $stmt->bindParam(':email', $email);
+        
+        // execute
+        $stmt->execute();
+
+        // get the rowcount
+        if ($stmt->rowCount() > 0) die('email exists');
     }
 
     /**

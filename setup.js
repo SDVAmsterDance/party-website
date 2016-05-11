@@ -150,3 +150,18 @@ function checkForm() {
     
     return true;
 }
+
+function fixStatus() {
+    // we're going to get the status
+    $.get('api/status.php', function(data) {
+        // parse the json
+        data = JSON.parse(data);
+    
+        // set the inner value
+        $("#regular").html(data["regular"]);
+        $("#vips").html(data["vip"]);
+            
+        // we need to update the maximum amount of guests
+        $("#buyer-guests").attr('max', data["regular"] - 1); 
+    });
+}
