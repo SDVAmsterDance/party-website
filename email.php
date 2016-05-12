@@ -1,3 +1,14 @@
+<?php
+
+// we need the registration
+require_once "api/class.Registration.php";
+
+if (!isset($_GET['registration'])) die('Registration not Found');
+
+// make that actual registration
+$registration = Registration::get($_GET['key']);
+	
+?>
 <!DOCTYPE html>
 <html>
 <head>

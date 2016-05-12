@@ -172,7 +172,7 @@ class Registration implements JsonSerializable {
         $stmt->bindParam(':hash', $id);
         
         // execute the statement
-        $stmt->execute();
+        $stmt->execute();   
     } 
 
     /**
