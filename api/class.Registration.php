@@ -51,9 +51,6 @@ class Registration implements JsonSerializable {
         // make sure email is filled out 
         if (strlen($this->email) < 3) die('empty field');
     
-        // check the email 
-        $this->check($this->email);
-
         // everything is in order so far, get the status (to see if registration is still possible)
         $status = new Status();
 
@@ -98,6 +95,9 @@ class Registration implements JsonSerializable {
      *  Store
      */
     public function store() {
+        // check the email 
+        $this->check($this->email);
+
         // get a database connection
         $dbh = new PDO('mysql:host='.DB_HOST.';dbname='.DB_DATABASE, DB_USER, DB_PASSWORD);  
 
@@ -163,16 +163,28 @@ class Registration implements JsonSerializable {
     public static function get($id) {
         // TODO get it from the database
         // get a database connection
-        $dbh = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASS);  
+        $dbh = new PDO('mysql:host='.DB_HOST.';dbname='.DB_DATABASE, DB_USER, DB_PASSWORD);  
 
         // make the statement
-        $stmt = $dbh->prepare("SELECT json, paid FROM registrations WHERE hash == :hash LIMIT 1");
+        $stmt = $dbh->prepare("SELECT json, paid FROM registrations WHERE hash = :hash LIMIT 1");
 
         // bind the statements
         $stmt->bindParam(':hash', $id);
         
-        // execute the statement
-        $stmt->execute();   
+        // execute the statementds
+        $stmt->execute();
+        
+        // fetch the result
+        $res = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        // if no result, do nothing
+        if (!$res) return null;
+         
+        // reconstruct from the json
+        $reg = new Registration(json_decode($res["json"], true));
+
+        // get the registration
+        return $reg;
     } 
 
     /**
