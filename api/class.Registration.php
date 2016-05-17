@@ -136,6 +136,22 @@ class Registration implements JsonSerializable {
         // return the array
         return $vips; 
     }
+    
+        public function members() {
+        // get the very important people
+        $members = array();
+        
+        // we may also be a vip
+        if ($this->buyer->member) array_push($members, $this->buyer);
+            
+        // find the vips
+        foreach ($this->guests as $guest)
+            if ($guest->member) array_push($members, $guest);
+
+
+        // return the array
+        return $members; 
+    }
 
     /**
      *  Retrieve the guest arrays
@@ -194,5 +210,15 @@ class Registration implements JsonSerializable {
         // serialize it to the correct form 
         return array_merge(json_decode(json_encode($this->buyer()), true), array("guests" => $this->guests, "email" => $this->email, "paid" => $this->paid));
     }
+    
+    public function price() {
+        $p = 0;
+        foreach ($this->guests as $guest) {
+            $p += $guest->price();
+        }
+        return $p + $this->buyer->price();
+    }
 }
+
+
 

@@ -40,7 +40,7 @@ class Person implements JsonSerializable {
      *  String casting operator
      */
     function __toString() {
-        return sprintf("%s (member: %b, vip: %b)", $this->name, $this->member, $this->vip);
+        return sprintf("%s%s", $this->name, $this->member ? " of the royal AmsterDance family" : "");
     }
     
     /**
@@ -49,5 +49,13 @@ class Person implements JsonSerializable {
     public function jsonSerialize() {
         // serialize it to the correct form
         return array("name" => $this->name, "member" => $this->member, "vip" => $this->vip); 
+    }
+    
+    public function price() {
+        $p = 1250;
+        if ($this->member) $p -= 500;
+        if ($this->vip) $p += 750;
+        
+        return $p;   
     }
 }
