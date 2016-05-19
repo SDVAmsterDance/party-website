@@ -8,7 +8,7 @@
  *  @author Michael van der Werve
  */
 
-require_once "config.php";
+require_once 'autoload.php';
 
 class Status implements JsonSerializable {
     /**

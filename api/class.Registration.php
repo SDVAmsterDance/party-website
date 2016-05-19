@@ -8,16 +8,14 @@
  *  @author Michael van der Werve
  */
 
-require_once 'config.php';
-require_once 'class.Person.php';
-require_once 'class.Status.php';
+require_once 'autoload.php';
 
 class Registration implements JsonSerializable {
     /**
      *  The guests.
      */
     private $guests = array();
-    
+
     /**
      *  Email
      */
@@ -47,10 +45,10 @@ class Registration implements JsonSerializable {
 
         // get the email
         $this->email = isset($arr["email"]) ? substr((string) $arr["email"], 0, 32) : "";
-        
+
         // make sure email is filled out 
         if (strlen($this->email) < 3) die('empty field');
-    
+
         // everything is in order so far, get the status (to see if registration is still possible)
         $status = new Status();
 
@@ -68,13 +66,13 @@ class Registration implements JsonSerializable {
 
         // get a database connection
         $dbh = new PDO('mysql:host='.DB_HOST.';dbname='.DB_DATABASE, DB_USER, DB_PASSWORD);  
-        
+
         // make the statement
         $stmt = $dbh->prepare("SELECT * FROM registrations WHERE email = :email");
 
         // bind the params
         $stmt->bindParam(':email', $email);
-        
+
         // execute
         $stmt->execute();
 
@@ -106,7 +104,7 @@ class Registration implements JsonSerializable {
 
         // create the json
         $json = json_encode($this);
-    
+
         // bind the parameters 
         $stmt->bindParam(':hash', md5($json . time()));
         $stmt->bindParam(':json', $json);
@@ -117,17 +115,17 @@ class Registration implements JsonSerializable {
         // execute the statement
         $stmt->execute();
     }
-    
+
     /**
      *  Retrieve the vips
      */
     public function vips() {
         // get the very important people
         $vips = array();
-        
+
         // we may also be a vip
         if ($this->buyer->vip) array_push($vips, $this->buyer);
-            
+
         // find the vips
         foreach ($this->guests as $guest)
             if ($guest->vip) array_push($vips, $guest);
@@ -136,14 +134,14 @@ class Registration implements JsonSerializable {
         // return the array
         return $vips; 
     }
-    
-        public function members() {
+
+    public function members() {
         // get the very important people
         $members = array();
-        
+
         // we may also be a vip
         if ($this->buyer->member) array_push($members, $this->buyer);
-            
+
         // find the vips
         foreach ($this->guests as $guest)
             if ($guest->member) array_push($members, $guest);
@@ -157,7 +155,7 @@ class Registration implements JsonSerializable {
      *  Retrieve the guest arrays
      */
     public function guests() { return $this->guests; }
-    
+
     /**
      *  Retrieve the buyers email
      */
@@ -167,12 +165,53 @@ class Registration implements JsonSerializable {
      *  Retrieve whether or not payment had been made
      */
     public function paid() { return $this->paid; }
-    
+
     /**
      *  Retrieve the buyer info
      */
     public function buyer() { return $this->buyer; }
+
+    /**
+     *  Send the confirmation email.
+     */
+    public function confirm() {
+        // create the email
+        $email = (string)new EmailBuilder($this, false);   
+
+        // simply message 
+        $this->message("Royal Ticket", $email);
+    }
     
+    /**
+     *  Payment has been made.
+     */
+    public function hasPaid() {
+        // TODO: mail + store
+        $this->paid = true;
+    }
+
+    /**
+     *  Generic mail function from eindfeecie
+     */
+    public function message($subject, $body) { 
+        // make the mailer
+        $mail = new PHPMailer;  
+        $mail->setFrom('pigeon@eindfeecie.tk', 'Royal Carrier Pigeon');
+        $mail->addAddress($this->email, $this->buyer->name);     // Add a recipient
+        $mail->addReplyTo('eindfeestamsterdance@gmail.com', 'Commissie Eindfeecie');
+        $mail->isHTML(true);                                  // Set email format to HTML
+        
+        // set the subject and body
+        $mail->Subject = $subject;
+        $mail->Body    = $body;
+
+        // send the mail
+        if(!$mail->send()) {
+            echo 'Message could not be sent.';
+            echo 'Mailer Error: ' . $mail->ErrorInfo;
+        } 
+    }
+
     /**
      *  Get a registration by an identifier, this is externally to load it from the database
      */
@@ -186,16 +225,16 @@ class Registration implements JsonSerializable {
 
         // bind the statements
         $stmt->bindParam(':hash', $id);
-        
+
         // execute the statementds
         $stmt->execute();
-        
+
         // fetch the result
         $res = $stmt->fetch(PDO::FETCH_ASSOC);
 
         // if no result, do nothing
         if (!$res) return null;
-         
+
         // reconstruct from the json
         $reg = new Registration(json_decode($res["json"], true));
 
@@ -210,7 +249,7 @@ class Registration implements JsonSerializable {
         // serialize it to the correct form 
         return array_merge(json_decode(json_encode($this->buyer()), true), array("guests" => $this->guests, "email" => $this->email, "paid" => $this->paid));
     }
-    
+
     public function price() {
         $p = 0;
         foreach ($this->guests as $guest) {
