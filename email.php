@@ -13,7 +13,7 @@ $registration = Registration::get($_GET['registration']);
 if ($registration != null) {
 
     // make the email
-    $email = new EmailBuilder($registration, false);
+    $email = new EmailBuilder($registration, true);
 
     // simply echo the email
     echo (string) $email;
