@@ -54,7 +54,7 @@ EOD;
 
         if (!$web) {
             // make the emogrifier
-            $emogrifier = new Pelago\Emogrifier($html, $css);
+            $emogrifier = new Emogrifier($html, $css);
         
             // merge it for the mail 
             $this->str = $emogrifier->emogrifyBodyContent($html, $css);
