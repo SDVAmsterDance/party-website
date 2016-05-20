@@ -22,6 +22,7 @@ $users = json_decode((string)$_POST['data'], true);
 // create the registration, this will validate
 $registration = new Registration($users);
 $registration->store();
+$registration->confirm();
 
 // for now, stringify the registration
 echo (string) $registration;
