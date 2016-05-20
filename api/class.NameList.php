@@ -13,7 +13,7 @@
      
      public function __construct($arr) {
         $len = count($arr);
-        if ($len == 1) $this->str = (string) $arr[0];
+        if ($len == 1) $this->str = (string)$arr[0];
         else if ($len == 2) $this->str = (string) $arr[0] . " and " . (string)$arr[1];
         else {
             for ($i = 0; $i < $len - 1; $i++) $this->str .= (string) $arr[$i] . ", ";
@@ -22,6 +22,6 @@
      }
      
      public function __toString() {
-         return $this->str;
+         return htmlentities($this->str, ENT_QUOTES);
      }
  }

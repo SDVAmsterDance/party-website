@@ -15,14 +15,14 @@ class StoryBuilder {
     public function __construct($registration, $web) {
         $this->str = "<div class='story-internal'>";
         $this->str .= "<b><div class=\"calligraphy love\">D</div>ear ";
-        $this->str .= $registration->buyer()->name;
+        $this->str .= htmlentities($registration->buyer()->name, ENT_QUOTES);
         $this->str .= "</b>, it will be an honour to receive you";
 
         $price = sprintf('&euro; %.2f', $registration->price() / 100.0);
         $guestamount = count($registration->guests());
         $this->str .= $guestamount > 0 ? ($guestamount == 1 ? " and your guest." : " and your guests. ") : ".";
     
-        if ($registration->buyer()->vip) $this->str .= "You shall be treated royally.";
+        if ($registration->buyer()->vip) $this->str .= " You shall be treated royally.";
 
         if ($guestamount > 0) {
             $this->str .= ($guestamount == 1) ?  " Your guest, " : " Your guests, ";

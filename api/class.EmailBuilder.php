@@ -21,8 +21,6 @@ class EmailBuilder {
         // get the css (combination of both used stylesheets!)
         $css = file_get_contents($loc . '/reset.css') . file_get_contents($loc . '/basis.css');
 
-        // find the root of the thingey
-
         // make the html
         $html = <<<EOD
 <html>
