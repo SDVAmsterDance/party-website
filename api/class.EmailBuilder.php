@@ -7,6 +7,8 @@
  *  @author Brechje Boeklagen
  */
 
+require_once 'autoload.php';
+
 class EmailBuilder {
     private $str;
     function __construct($registration, $web = true) {
