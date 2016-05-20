@@ -8,7 +8,6 @@
  */
 
 require_once 'autoload.php';
-require_once 'vendor/pelago/emogrifier/Classes/Emogrifier.php';
 
 class EmailBuilder {
     private $str;
@@ -55,7 +54,7 @@ EOD;
 
         if (!$web) {
             // make the emogrifier
-            $emogrifier = new \Pelago\Emogrifier($html, $css);
+            $emogrifier = new Pelago\Emogrifier($html, $css);
         
             // merge it for the mail 
             $this->str = $emogrifier->emogrifyBodyContent($html, $css);
