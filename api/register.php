@@ -9,7 +9,7 @@
  *  @copyright 2016
  */
 
-require_once "class.Registration.php";
+require_once 'autoload.php';
 
 // if the data is not set, we should stop immediately
 if (!isset($_POST['data'])) die('no data');
