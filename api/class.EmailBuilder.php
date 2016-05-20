@@ -15,8 +15,13 @@ class EmailBuilder {
         // make the story
         $story = (string) new StoryBuilder($registration, $web);
 
+        // get the original directory
+        $loc = dirname(dirname(__FILE__)); 
+
         // get the css (combination of both used stylesheets!)
-        $css = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/reset.css') . file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/basis.css');
+        $css = file_get_contents($loc . '/reset.css') . file_get_contents($loc . '/basis.css');
+
+        // find the root of the thingey
 
         // make the html
         $html = <<<EOD
