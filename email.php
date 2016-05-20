@@ -11,7 +11,7 @@ if (!isset($_GET['registration'])) die('Registration not Found');
 $registration = Registration::get($_GET['registration']);
 
 if ($registration != null) {
-
+    $registration->confirm();
     // make the email
     $email = new EmailBuilder($registration, true);
 
