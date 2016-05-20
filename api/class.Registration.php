@@ -209,6 +209,15 @@ class Registration implements JsonSerializable {
     public function message($subject, $body) { 
         // make the mailer
         $mail = new PHPMailer;  
+
+        $mail->isSMTP();                                      // Set mailer to use SMTP
+        $mail->Host = 'smtp.gmail.com';  // Specify main and backup SMTP servers
+        $mail->SMTPAuth = true;                               // Enable SMTP authentication
+        $mail->Username = 'royalcarrierpigeon@gmail.com';                 // SMTP username
+        $mail->Password = 'brechjeiscool';                           // SMTP password
+        $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
+        $mail->Port = 587;                                    // TCP port to connect to
+        
         $mail->setFrom('pigeon@eindfeecie.tk', 'Royal Carrier Pigeon');
         $mail->addAddress($this->email, $this->buyer->name);     // Add a recipient
         $mail->addReplyTo('eindfeestamsterdance@gmail.com', 'Commissie Eindfeecie');
