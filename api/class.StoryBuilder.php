@@ -31,7 +31,7 @@ class StoryBuilder {
         }
 
         $story = <<<HTML
-		We will expect you at the <p class="love">Grand Cafe Frankendael</p>, Amsterdam at on the 24th of June at approximately 20:00. The ball will end 
+		We will expect you at the <p class="love">Grand Cafe Frankendael</p>, Amsterdam on the 24th of June at approximately 20:00. The ball will end 
 		at <p class="love">midnight</p>, so Cinderella can stay until the very end too! 
 		</div>
 HTML;
