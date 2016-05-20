@@ -20,6 +20,8 @@ class EmailBuilder {
         $html = <<<EOD
 <html>
 <head>
+    <link rel="stylesheet" type="text/css" href="reset.css"/>
+    <link rel="stylesheet" type="text/css" href="basis.css"/>
     <meta charset="ISO-8859-1">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -47,11 +49,16 @@ class EmailBuilder {
 </body>
 </html>
 EOD;
-        // make the emogrifier
-        $emogrifier = new \Pelago\Emogrifier($html, $css);
+
+        if (!$web) {
+            // make the emogrifier
+            $emogrifier = new \Pelago\Emogrifier($html, $css);
         
-        // merge it for the mail 
-        $this->str = $web ? $emogrifier->emogrify() : $emogrifier->emogrifyBodyContent($html, $css);
+            // merge it for the mail 
+            $this->str = $emogrifier->emogrifyBodyContent($html, $css);
+        } else {
+            $this->str = $html;
+        }
     } 
 
     public function __toString() {

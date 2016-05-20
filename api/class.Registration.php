@@ -32,6 +32,11 @@ class Registration implements JsonSerializable {
     private $paid = false;
 
     /**
+     *  The unique db identifier
+     */
+    private $hash = null;
+    
+    /**
      *  Construct the object
      */
     function __construct($arr) {
@@ -105,8 +110,11 @@ class Registration implements JsonSerializable {
         // create the json
         $json = json_encode($this);
 
+        // create the hash
+        $this->hash = md5($json . time());
+
         // bind the parameters 
-        $stmt->bindParam(':hash', md5($json . time()));
+        $stmt->bindParam(':hash', $this->hash);
         $stmt->bindParam(':json', $json);
         $stmt->bindParam(':email', $this->email);
         $stmt->bindParam(':guests', count($this->guests));
@@ -165,6 +173,11 @@ class Registration implements JsonSerializable {
      *  Retrieve whether or not payment had been made
      */
     public function paid() { return $this->paid; }
+    
+    /**
+     *  Retrieve the hash.
+     */
+    public function hash() { return $this->hash; }
 
     /**
      *  Retrieve the buyer info
@@ -234,9 +247,18 @@ class Registration implements JsonSerializable {
 
         // if no result, do nothing
         if (!$res) return null;
+    
+        // the result is now the json
+        $json = json_decode($res["json"]);
 
         // reconstruct from the json
         $reg = new Registration(json_decode($res["json"], true));
+    
+        // whether or not payment has been made
+        $reg->paid = $res["paid"];
+        
+        // set the hash
+        $reg->hash = $id;
 
         // get the registration
         return $reg;
