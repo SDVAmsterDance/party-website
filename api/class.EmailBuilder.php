@@ -8,6 +8,7 @@
  */
 
 require_once 'autoload.php';
+require_once 'vendor/pelago/emogrifier/Classes/Emogrifier.php';
 
 class EmailBuilder {
     private $str;
