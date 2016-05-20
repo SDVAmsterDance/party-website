@@ -68,6 +68,9 @@ class Registration implements JsonSerializable {
     function check($email) {
         // check validity
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) die('invalid email format');
+    
+        // we don't want to check any more, so we return early
+        return;
 
         // get a database connection
         $dbh = new PDO('mysql:host='.DB_HOST.';dbname='.DB_DATABASE, DB_USER, DB_PASSWORD);  
