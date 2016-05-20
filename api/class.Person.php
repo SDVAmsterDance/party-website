@@ -58,4 +58,8 @@ class Person implements JsonSerializable {
         
         return $p;   
     }
+
+    public function repr() {
+        return htmlentities(sprintf("(%s mem: %b, vip: %b, price: %.2f)", $this->name, $this->member, $this->vip, $this->price() / 100), ENT_QUOTES);
+    }
 }

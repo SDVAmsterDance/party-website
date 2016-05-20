@@ -12,11 +12,14 @@ require_once 'autoload.php';
 class StoryBuilder {
     private $str;
 
-    public function __construct($registration, $web) {
+    public function __construct($registration, $web, $payment) {
         $this->str = "<div class='story-internal'>";
         $this->str .= "<b><div class=\"calligraphy love\">D</div>ear ";
         $this->str .= htmlentities($registration->buyer()->name, ENT_QUOTES);
-        $this->str .= "</b>, it will be an honour to receive you";
+        $this->str .= "</b>, ";
+
+        if (!$payment) {
+        $this->str .= "it will be an honour to receive you";
 
         $price = sprintf('&euro; %.2f', $registration->price() / 100.0);
         $guestamount = count($registration->guests());
@@ -61,6 +64,10 @@ HTML;
         // if this is the mail version, we want to link to the webversion 
         if (!$web) {
             $this->str .= $html;
+        }
+        } else {
+            $hash = $registration->hash();
+            $this->str .= "your payment has been received in full. Thank you! We look forward to your attendance, your registration is available <a href='https://eindfeecie.tk/email.php?registration=$hash' class='love'>here</a>.";
         }
     }
 

@@ -201,6 +201,22 @@ class Registration implements JsonSerializable {
     public function hasPaid() {
         // TODO: mail + store
         $this->paid = true;
+        
+        // get a database connection
+        $dbh = new PDO('mysql:host='.DB_HOST.';dbname='.DB_DATABASE, DB_USER, DB_PASSWORD);  
+
+        // make the statement
+        $stmt = $dbh->prepare("UPDATE registrations SET paid = true WHERE hash = :hash");
+
+        // run the statement
+        $stmt->bindParam(":hash", $this->hash);
+        $stmt->execute();
+        
+        // create the email
+        $email = (string)new EmailBuilder($this, false, true);   
+
+        // simply message 
+        $this->message("Payment Confirmation", $email);
     }
 
     /**

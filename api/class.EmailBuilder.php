@@ -11,9 +11,9 @@ require_once 'autoload.php';
 
 class EmailBuilder {
     private $str;
-    function __construct($registration, $web = true) {
+    function __construct($registration, $web = true, $payment = false) {
         // make the story
-        $story = (string) new StoryBuilder($registration, $web);
+        $story = (string) new StoryBuilder($registration, $web, $payment);
 
         // get the original directory
         $loc = dirname(dirname(__FILE__)); 
