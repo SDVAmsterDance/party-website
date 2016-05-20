@@ -69,7 +69,7 @@ class Registration implements JsonSerializable {
         // check validity
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) die('invalid email format');
     
-        // we don't want to check any more, so we return early
+        // we don't want to check any more
         return;
 
         // get a database connection
@@ -202,6 +202,9 @@ class Registration implements JsonSerializable {
      *  Payment has been made.
      */
     public function hasPaid() {
+        // do nothing if already paid
+        if ($this->paid) return;
+
         // TODO: mail + store
         $this->paid = true;
         
