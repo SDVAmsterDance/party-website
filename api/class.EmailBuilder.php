@@ -14,7 +14,7 @@ class EmailBuilder {
         $story = (string) new StoryBuilder($registration, $web);
 
         // get the css (combination of both used stylesheets!)
-        $css = file_get_contents('reset.css') . file_get_contents('basis.css');
+        $css = file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/reset.css') . file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/basis.css');
 
         // make the html
         $html = <<<EOD
