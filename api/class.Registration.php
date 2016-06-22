@@ -39,7 +39,7 @@ class Registration implements JsonSerializable {
     /**
      *  Construct the object
      */
-    function __construct($arr) {
+    function __construct($arr, $fromdb = false) {
         // this array doubles as the stuff
         $this->buyer = new Person($arr);
 
@@ -53,6 +53,9 @@ class Registration implements JsonSerializable {
 
         // make sure email is filled out 
         if (strlen($this->email) < 3) die('empty field');
+
+        // we're done if from registration
+        if ($fromdb) return;
 
         // everything is in order so far, get the status (to see if registration is still possible)
         $status = new Status();
@@ -283,7 +286,7 @@ class Registration implements JsonSerializable {
         $json = json_decode($res["json"]);
 
         // reconstruct from the json
-        $reg = new Registration(json_decode($res["json"], true));
+        $reg = new Registration(json_decode($res["json"], true), true);
     
         // whether or not payment has been made
         $reg->paid = $res["paid"];
