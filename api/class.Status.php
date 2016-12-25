@@ -38,8 +38,8 @@ class Status implements JsonSerializable {
     /**
      *  Amount of regular tickets left and vip
      */
-    public function regular() { return 70 - $this->regular; }
-    public function vip() { return min(10 - $this->vip, $this->regular()); }
+    public function regular() { return MAX_GUESTS - $this->regular; }
+    public function vip() { return min(MAX_VIPS - $this->vip, $this->regular()); }
 
     /**
      *  Function to convert to serializable datat type

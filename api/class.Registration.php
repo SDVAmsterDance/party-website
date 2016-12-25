@@ -72,7 +72,7 @@ class Registration implements JsonSerializable {
         // check validity
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) die('invalid email format');
     
-        // we don't want to check any more
+        // we don't want to check any more for now
         return;
 
         // get a database connection

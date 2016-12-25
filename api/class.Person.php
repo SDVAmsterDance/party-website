@@ -52,9 +52,9 @@ class Person implements JsonSerializable {
     }
     
     public function price() {
-        $p = 1250;
-        if ($this->member) $p -= 500;
-        if ($this->vip) $p += 750;
+        $p = PRICE_BASE;
+        if ($this->member) $p -= MEMBER_DIFF;
+        if ($this->vip) $p += VIP_DIFF;
         
         return $p;   
     }

@@ -38,8 +38,10 @@ class EmailBuilder {
 <div id="content">
     
     <div id="banner-title">
-        <div id="title-presents">AmsterDance presents...</div>
-        <div id="title">Your Very Own Royal Ticket</div>
+        <div id="title-presents"> SDV AmsterDance presents...</div>
+        <div id="title">Arabian Nights Ballroom Gala</div>
+        <div id="date">10th of February, 2017</div>
+        <div id="time">Rhone Events: Humberweg 5, Amsterdam. 20:00 - 0:30</div>
     </div>
     
     <div class="stories clearfix">

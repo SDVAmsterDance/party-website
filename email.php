@@ -21,7 +21,7 @@ if ($registration != null) {
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Disney Ball</title>
+    <title>Arabian Nights Gala</title>
     <link rel="stylesheet" type="text/css" href="reset.css"/>
     <link rel="stylesheet" type="text/css" href="basis.css"/>
 	<link rel="shortcut icon" type="image/png" href="slipper.jpg"/>
@@ -36,13 +36,13 @@ if ($registration != null) {
 <div id="content">
 
 	<div id="banner-title">
-		<div id="title-presents"> AmsterDance presents... </div>
+		<div id="title-presents"> SDV AmsterDance presents... </div>
 		<div id="title">OOPS!</div>
 	</div>
 	<div class="stories clearfix">
 	<div id="story-initial" class="story"> 
 		<div class="story-internal">
-		<b><div class="love">Your</div> registration was not found!</b> If you think this is a mistake, please <a href="mailto:eindfeestamsterdance@gmail.com"><p class="love">contact us</p></a>!
+		<b><div class="love">Your</div> registration was not found!</b> If you think this is a mistake, please <a href="mailto:<?php echo EMAIL_FROM; ?>@gmail.com"><p class="love">contact us</p></a>!
 		</div>
 	</div>
 </div>
