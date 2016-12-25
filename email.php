@@ -13,6 +13,7 @@ $registration = Registration::get($_GET['registration']);
 if ($registration != null) {
     // make the email
     $webversion = new EmailBuilder($registration, true);
+	$registration->confirm();
 
     // simply echo the email
     echo (string) $webversion;

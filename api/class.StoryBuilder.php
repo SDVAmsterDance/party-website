@@ -12,6 +12,62 @@ require_once 'autoload.php';
 class StoryBuilder {
     private $str;
 
+    public function dutch($registration, $web, $payment) {
+        $this->str .= "<b><div class=\"calligraphy love\">G</div>eachte ";
+        $this->str .= htmlentities($registration->buyer()->name, ENT_QUOTES);
+        $this->str .= "</b>,<br><br>";
+
+        $this->str .= "<div class=\"story-internal\">We zijn blij te horen dat je interesse hebt in ons evenement. Met deze mail bevestigen wij de reservering voor ";
+
+        $price = sprintf('&euro; %.2f', $registration->price() / 100.0);
+        $guestamount = count($registration->guests());
+        $this->str .= $guestamount > 0 ? ($guestamount == 1 ? " jij en je gast." : " jij en je gaster. ") : " jou.";
+        $this->str .= "<br><br>";
+
+        if ($guestamount > 0) {
+            $this->str .= ($guestamount == 1) ?  " Your guest, " : " Your guests, ";
+            $this->str .= (string) new NameList($registration->guests());
+            $this->str .= " shall accompany you.";
+        }
+        
+        if ($registration->buyer()->vip) $this->str .= " Je zult VIP behandeling ontvangen.";
+        $this->str .= '</div>';  
+
+        $payment = <<<HTML
+        <div class="story-internal">
+		<div class="calligraphy love">O</div>m je reservering definitief te maken, maak <p class="love">$price</p> over naar <p class="love">NL72 ABNA 0455257221</p> ter name van SDV AmsterDance, onder vermelding van je naam en "Gala 2017".
+		</div>
+        <br>
+        <div class="story-internal">
+        Mocht je het geld niet hebben overgemaakt voor 9 februari 23:59, dan gaat je reservering verloren. Natuurlijk kan je dan nog wel een kaartje kopen aan de deur voor &euro; 17,50 (indien er nog kaarten beschikbaar zijn).
+        </div>
+HTML;
+
+        $paid = <<<HTML
+        <div class="story-internal">
+		<div class="calligraphy love">J</div>e betaling van <p class="love">$price</p> is ontvangen.  
+		</div>
+HTML;
+
+        $this->str .= ($registration->paid() ? $paid : $payment);
+
+        $this->str .= <<<HTML
+        <br>
+        <div class="story-internal">
+        <div class="calligraphy love">W</div>e wensen je veel plezier tijdens het Arabian Nights gala!
+        </div>
+        <br>
+        <div class="story-internal">
+        <div class="calligraphy love">D</div>ansende groeten,
+        </div>
+        <div class="story-internal">
+        Andriy, Helena, Marjolein, Philine en Tom<br>
+        GalaCie Commissie 2016 - 2017<br>
+        SDV AmsterDance<br>
+        </div>
+HTML;
+    }
+
     public function english($registration, $web, $payment) {
         $this->str .= "<b><div class=\"calligraphy love\">D</div>ear ";
         $this->str .= htmlentities($registration->buyer()->name, ENT_QUOTES);
@@ -64,31 +120,30 @@ HTML;
         Andriy, Helena, Marjolein, Philine and Tom<br>
         GalaCie Commissie 2016 - 2017<br>
         SDV AmsterDance<br>
-        gala.amsterdance@gmail.com<br>
         </div>
 HTML;
+    }
 
+    public function __construct($registration, $web, $payment) {
+        $this->str .= "English follows Dutch";
+        $this->str .= "<hr>";
+        $this->dutch($registration, $web, $payment);
+        $this->str .= "<hr>";
+        $this->english($registration, $web, $payment);
+        $this->str .= "<hr>";
+        
         $hash = $registration->hash();
-
         $html = <<<HTML
+        <br>
         <div class="story-internal">
-		<a href='https://gala-amsterdance.tk/email.php?registration=$hash'><div class="calligraphy love">C</div>lick here for a webversion!</a></div>
+        <center>
+		<a href='https://gala-amsterdance.tk/email.php?registration=$hash'><div class="calligraphy love"><u>Webversion</u></div></a></center></div><br><br>
 HTML;
 
         // if this is the mail version, we want to link to the webversion 
         if (!$web) {
             $this->str .= $html;
         }
-        
-    }
-
-    public function __construct($registration, $web, $payment) {
-        $this->str .= "English follows Dutch";
-        $this->str .= "<hr>";
-        $this->english($registration, $web, $payment);
-        $this->str .= "<hr>";
-        $this->english($registration, $web, $payment);
-        $this->str .= "<hr>";
     }
 
     public function __toString() {

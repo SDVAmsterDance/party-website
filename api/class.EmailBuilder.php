@@ -36,7 +36,7 @@ class EmailBuilder {
 <div class="wrapper">
 <div id="parchment">
 <div id="content">
-    
+    <br><br>
     <div id="banner-title">
         <div id="title-presents"> SDV AmsterDance presents...</div>
         <div id="title">Arabian Nights Ballroom Gala</div>

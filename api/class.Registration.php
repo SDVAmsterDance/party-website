@@ -202,7 +202,7 @@ class Registration implements JsonSerializable {
         $email = (string)new EmailBuilder($this, false);   
 
         // simply message 
-        $this->message("Royal Ticket", $email);
+        $this->message("Gala Ticket", $email);
     }
     
     /**
@@ -244,7 +244,6 @@ class Registration implements JsonSerializable {
         $mail->SMTPAuth = true;                               // Enable SMTP authentication
         $mail->Username = RELAY_EMAIL_USER;                   // SMTP username
         $mail->Password = RELAY_EMAIL_PASSWORD;               // SMTP password
-        $mail->SMTPDebug = 2;
         $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
         $mail->Port = RELAY_EMAIL_PORT;                       // TCP port to connect to
         $mail->Priority = 1;
