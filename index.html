@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Arabian Nights Ballroom Gala</title>
+    <link rel="stylesheet" type="text/css" href="reset.css"/>
+    <link rel="stylesheet" type="text/css" href="basis.css"/>
+	<link rel="shortcut icon" type="image/png" href="lamp_icon.jpg"/>
+    <script src="jquery-latest.min.js" type="text/javascript"></script>
+    <script src="setup.js" type="text/javascript"></script>
+    <script src="control.js" type="text/javascript"></script>
+    <meta charset="ISO-8859-1">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+
+    <div class="wrapper">
+        <div id="header">
+            <img src="header1_stars.jpg" alt="Banner">
+        </div>
+        <div id="parchment">
+            <div id="content">
+                <div id="banner-title">
+                    <div id="title-presents"> SDV AmsterDance presents... </div>
+                    <div id="title">Arabian Nights Ballroom Gala</div>
+                    <div id="date">10th of February, 2017</div>
+                    <div id="time">Rhone Events: Humberweg 5, Amsterdam. 20:00 - 0:30</div>
+                </div>
+                <div class="stories clearfix">
+                    <div id="story-initial" class="story hidden">
+                        <div class="story-internal">
+                            <p>
+                                Join us for our grand AmsterDance 5-year Anniversary Ballroom Gala at a very special location! Experience the wondrous world of flying carpets and belly dancers!
+                                </br> Come and dance a waltz or a rumba to the music of 1001 nights on our sultan-sized dance floor. Submerge yourself into the flair of the Middle East during two magical dance performances in an atmosphere of colourful lights and candles.
+                                </br> Everyone is welcome at our Arabian nights themed ballroom gala.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div id="story-form" class="story hidden">
+                        <div class="story-internal">
+                            <p>
+                                Please fill in your information for ordering ticket(s).
+                                </br></br></br> Name: <input type="text" id="buyer-name" placeholder="Full Name" maxlength="32" />
+                                </br>Amsterdance Member: <select id="buyer-member" class="option"><option value="1">yes</option><option value="2">no</option></select>
+                                </br> Sultan-treatment (VIP)? <select id="buyer-vip" class="option"><option value="1">Regular ticket</option><option value="2">Sultan-ticket</option></select>
+                                </br> Tickets can be send to the following e-mail adress: <input type="email" id="buyer-email" placeholder="email address" maxlength="32" />
+                                </br></br></br></br> Multiple tickets? <select id="buyer-accompanied"><option value="unaccompanied" selected>no</option><option value="accompanied">yes</option></select><div id="accompanied-sentence" class="hidden inline">
+                                    <input type="number" id="buyer-guests" min="1" value="0" /> tickets <div id="guests" class="inline"></div>
+                                </div>
+                            </p>
+                        </div>
+                        <div id="buyer-guests-input">
+                        </div>
+                        <div class="story-internal">
+                            <p><div id="price" class="love"> </br></br> The calculated price of your tickets: <div class="eurosign">&euro;</div><div id="price-value">12,50</div></div></p>
+                        </div>
+                    </div>
+
+                    <div id="story-confirmation" class="story hidden">
+                        <div class="story-internal">
+                            <p>
+                                Thank you for ordering tickets for the Arabian Nights Ballroom Gala. An email with conformation and the payment details will be sent to you.
+                                </br> Beware, if you don't pay before the 9th of february 00.00 your order will be cancelled.
+                                </br> If you don't receive an email in two days please  <a href="mailto:gala.amsterdance@gmail.com">contact us</a>!
+                            </p>
+                        </div>
+
+                    </div>
+                    <div id="guest-template" class="story-internal invisible hidden">
+                        <p>
+                            </br> Name: <input type="text" class="buyer-name" placeholder="Full Name" maxlength="32" />
+                            </br> Amsterdam Member: <select class="buyer-member option"><option value="1">no</option><option value="2">yes</option></select>
+                            </br> Sultan-treatment? <select class="buyer-vip option"><option value="1">Regular ticket</option><option value="2">Sultan-ticket</option></select>.
+
+                    </div>
+                </div>
+                <div id="footer">
+                    <div id="buttons">
+                        <div id="apply-button" class="story link hidden">Buy Tickets</div>
+                        <div id="submit-button" class="story link hidden">Submit</div>
+                    </div>
+                </div>
+
+                
+            </div>
+        </div>
+        <div id="footer2">
+            <img src="banner_onder_stars.jpg" alt="Banner">
+        </div>
+
+    </div>
+
+</body>
+</html>
