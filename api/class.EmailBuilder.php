@@ -57,7 +57,7 @@ class EmailBuilder {
 </html>
 EOD;
 
-        if (!$web) {
+        if (true || !$web) {
             // make the emogrifier
             $emogrifier = new Pelago\Emogrifier($html, $css);
         

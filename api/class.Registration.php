@@ -14,45 +14,45 @@ class Registration implements JsonSerializable {
     /**
      *  The guests.
      */
-    private $guests = array();
+    private $_guests = array();
 
     /**
      *  Email
      */
-    private $email = null;
+    private $_email = null;
 
     /**
      * Buyer (also a person)
      */
-    private $buyer = null;
+    private $_buyer = null;
 
     /**
      *  Whether or not payment has been made
      */
-    private $paid = false;
+    private $_paid = false;
 
     /**
      *  The unique db identifier
      */
-    private $hash = null;
+    private $_hash = null;
     
     /**
      *  Construct the object
      */
     function __construct($arr, $fromdb = false) {
         // this array doubles as the stuff
-        $this->buyer = new Person($arr);
+        $this->_buyer = new Person($arr);
 
         // validate the guests by constructing the above classes
         foreach ($arr["guests"] as $guest) {
-            array_push($this->guests, new Person($guest));
+            array_push($this->_guests, new Person($guest));
         }
 
         // get the email
-        $this->email = isset($arr["email"]) ? substr((string) $arr["email"], 0, 32) : "";
+        $this->_email = isset($arr["email"]) ? substr((string) $arr["email"], 0, 128) : "";
 
         // make sure email is filled out 
-        if (strlen($this->email) < 3) die('empty field');
+        if (strlen($this->_email) < 3) die('empty field');
 
         // we're done if from registration
         if ($fromdb) return;
@@ -61,7 +61,7 @@ class Registration implements JsonSerializable {
         $status = new Status();
 
         // make sure there are enough tickets
-        if (count($this->guests) + 1 > $status->regular()) die('too many regular tickets');
+        if (count($this->_guests) + 1 > $status->regular()) die('too many regular tickets');
         else if (count($this->vips()) > $status->vip()) die('too many vip tickets');
     }
 
@@ -96,8 +96,8 @@ class Registration implements JsonSerializable {
      */
     function __toString() {
         $guests = "";
-        foreach ($this->guests as $guest) $guests .= (string) $guest;
-        return sprintf("%s (member: %b, vip: %b, email: %s) brings along (%s)", $this->buyer->name, $this->buyer->member, $this->buyer->vip, $this->email, $guests);
+        foreach ($this->_guests as $guest) $guests .= (string) $guest;
+        return sprintf("%s (member: %b, vip: %b, email: %s) brings along (%s)", $this->_buyer->name, $this->_buyer->member, $this->_buyer->vip, $this->_email, $guests);
     }
 
     /**
@@ -105,7 +105,7 @@ class Registration implements JsonSerializable {
      */
     public function store() {
         // check the email 
-        $this->check($this->email);
+        $this->check($this->_email);
 
         // get a database connection
         $dbh = new PDO('mysql:host='.DB_HOST.';dbname='.DB_DATABASE, DB_USER, DB_PASSWORD);  
@@ -117,14 +117,18 @@ class Registration implements JsonSerializable {
         $json = json_encode($this);
 
         // create the hash
-        $this->hash = md5($json . time());
+        $this->_hash = md5($json . time());
+
+        // the amount of guests
+        $n_guests = count($this->_guests);
+        $n_vips = count($this->vips());
 
         // bind the parameters 
-        $stmt->bindParam(':hash', $this->hash);
+        $stmt->bindParam(':hash', $this->_hash);
         $stmt->bindParam(':json', $json);
-        $stmt->bindParam(':email', $this->email);
-        $stmt->bindParam(':guests', count($this->guests));
-        $stmt->bindParam(':vips', count($this->vips()));
+        $stmt->bindParam(':email', $this->_email);
+        $stmt->bindParam(':guests', $n_guests);
+        $stmt->bindParam(':vips', $n_vips);
 
         // execute the statement
         $stmt->execute();
@@ -138,10 +142,10 @@ class Registration implements JsonSerializable {
         $vips = array();
 
         // we may also be a vip
-        if ($this->buyer->vip) array_push($vips, $this->buyer);
+        if ($this->_buyer->vip) array_push($vips, $this->_buyer);
 
         // find the vips
-        foreach ($this->guests as $guest)
+        foreach ($this->_guests as $guest)
             if ($guest->vip) array_push($vips, $guest);
 
 
@@ -154,10 +158,10 @@ class Registration implements JsonSerializable {
         $members = array();
 
         // we may also be a vip
-        if ($this->buyer->member) array_push($members, $this->buyer);
+        if ($this->_buyer->member) array_push($members, $this->_buyer);
 
         // find the vips
-        foreach ($this->guests as $guest)
+        foreach ($this->_guests as $guest)
             if ($guest->member) array_push($members, $guest);
 
 
@@ -168,27 +172,27 @@ class Registration implements JsonSerializable {
     /**
      *  Retrieve the guest arrays
      */
-    public function guests() { return $this->guests; }
+    public function guests() { return $this->_guests; }
 
     /**
      *  Retrieve the buyers email
      */
-    public function email() { return $this->email; }
+    public function email() { return $this->_email; }
 
     /**
      *  Retrieve whether or not payment had been made
      */
-    public function paid() { return $this->paid; }
+    public function paid() { return $this->_paid; }
     
     /**
      *  Retrieve the hash.
      */
-    public function hash() { return $this->hash; }
+    public function hash() { return $this->_hash; }
 
     /**
      *  Retrieve the buyer info
      */
-    public function buyer() { return $this->buyer; }
+    public function buyer() { return $this->_buyer; }
 
     /**
      *  Send the confirmation email.
@@ -206,10 +210,10 @@ class Registration implements JsonSerializable {
      */
     public function hasPaid() {
         // do nothing if already paid
-        if ($this->paid) return;
+        if ($this->_paid) return;
 
         // TODO: mail + store
-        $this->paid = true;
+        $this->_paid = true;
         
         // get a database connection
         $dbh = new PDO('mysql:host='.DB_HOST.';dbname='.DB_DATABASE, DB_USER, DB_PASSWORD);  
@@ -218,7 +222,7 @@ class Registration implements JsonSerializable {
         $stmt = $dbh->prepare("UPDATE registrations SET paid = true WHERE hash = :hash");
 
         // run the statement
-        $stmt->bindParam(":hash", $this->hash);
+        $stmt->bindParam(":hash", $this->_hash);
         $stmt->execute();
         
         // create the email
@@ -235,16 +239,20 @@ class Registration implements JsonSerializable {
         // make the mailer
         $mail = new PHPMailer;  
 
-        $mail->isSMTP();                                      // Set mailer to use SMTP
-        $mail->Host = RELAY_EMAIL_SMTP;                         // Specify main and backup SMTP servers
+        $mail->IsSMTP();                                      // Set mailer to use SMTP
+        $mail->Host = RELAY_EMAIL_SMTP;                       // Specify main and backup SMTP servers
         $mail->SMTPAuth = true;                               // Enable SMTP authentication
-        $mail->Username = RELAY_EMAIL_USER;     // SMTP username
-        $mail->Password = RELAY_EMAIL_PASSWORD;                    // SMTP password
+        $mail->Username = RELAY_EMAIL_USER;                   // SMTP username
+        $mail->Password = RELAY_EMAIL_PASSWORD;               // SMTP password
+        $mail->SMTPDebug = 2;
         $mail->SMTPSecure = 'tls';                            // Enable TLS encryption, `ssl` also accepted
-        $mail->Port = RELAY_EMAIL_PORT;                                    // TCP port to connect to
+        $mail->Port = RELAY_EMAIL_PORT;                       // TCP port to connect to
+        $mail->Priority = 1;
+        $mail->CharSet = 'UTF-8';
+        $mail->Encoding = '8bit';
         
         $mail->setFrom(EMAIL_FROM, EMAIL_FROM_NAME);
-        $mail->addAddress($this->email, $this->buyer->name);     // Add a recipient
+        $mail->addAddress($this->_email, $this->_buyer->name);     // Add a recipient
         $mail->addReplyTo(RELAY_EMAIL_USER, EMAIL_FROM_NAME);
         $mail->isHTML(true);                                  // Set email format to HTML
         
@@ -253,7 +261,11 @@ class Registration implements JsonSerializable {
         $mail->Body    = $body;
 
         // send the mail
-        if(!$mail->send()) {
+        $mail->Send();
+        $mail->SmtpClose();
+        
+        // send the mail
+        if ($mail->IsError()) {
             echo 'Message could not be sent.';
             echo 'Mailer Error: ' . $mail->ErrorInfo;
         } 
@@ -303,15 +315,15 @@ class Registration implements JsonSerializable {
      */
     public function jsonSerialize() {
         // serialize it to the correct form 
-        return array_merge(json_decode(json_encode($this->buyer()), true), array("guests" => $this->guests, "email" => $this->email, "paid" => $this->paid));
+        return array_merge(json_decode(json_encode($this->buyer()), true), array("guests" => $this->_guests, "email" => $this->_email, "paid" => $this->_paid));
     }
 
     public function price() {
         $p = 0;
-        foreach ($this->guests as $guest) {
+        foreach ($this->_guests as $guest) {
             $p += $guest->price();
         }
-        return $p + $this->buyer->price();
+        return $p + $this->_buyer->price();
     }
 }
 

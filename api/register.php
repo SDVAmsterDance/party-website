@@ -21,7 +21,7 @@ $users = json_decode((string)$_POST['data'], true);
 $registration = new Registration($users);
 $registration->store();
 
-// for some reason, this works better?
+// for some reason, this works better...? let's just assume that it is correct
 $reg = Registration::get($registration->hash());
 $reg->confirm();
 
