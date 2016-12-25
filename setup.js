@@ -25,12 +25,12 @@ function fixPrice() {
     member = $("#buyer-member").val();
     vip = $("#buyer-vip").val();
 
-    // 12,50 is the base price
+    // 15,- is the base price
     price = 1500;
 
-    // amsterdance members pay 5 euros less but vips 7,50 euros more.
+    // amsterdance members pay 5 euros less but vips 10 euros more.
     if (member == "1") price -= 500;
-    if (vip == "2") price += 750;
+    if (vip == "2") price += 1000;
     
     // get the extra guests
     guests = $("#buyer-guests-input").children();
