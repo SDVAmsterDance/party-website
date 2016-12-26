@@ -44,9 +44,10 @@ function fixPrice() {
         member = $(guests[i]).find(".buyer-member").val();
         vip = $(guests[i]).find(".buyer-vip").val();
     
+        console.log(guests);
         // amsterdance members pay 5 euros less but vips 7,50 euros more.
         if (member == "1") price -= 500;
-        if (vip == "2") price += 750;
+        if (vip == "2") price += 1000;
     }
 
     // set the pprice in the correct field.
@@ -141,7 +142,7 @@ function checkForm() {
     //Extract if the buyer is a member or not and if he/she would like to be treated as a vip (and store in data)
     member = $("#buyer-member").val();
     vip = $("#buyer-vip").val();
-    data["member"] = (member == "2");
+    data["member"] = (member == "1");
     data["vip"] = (vip == "2");
     
     $.post('api/register.php', {data: JSON.stringify(data)}, function(data) {
@@ -153,10 +154,7 @@ function checkForm() {
 
 function fixStatus() {
     // we're going to get the status
-    $.get('api/status.php', function(data) {
-        // parse the json
-        data = JSON.parse(data);
-    
+    jQuery.getJSON('api/status.php', function(data) {
         // set the inner value
         $("#regular").html(data["regular"]);
         $("#vips").html(data["vip"]);

@@ -5,7 +5,10 @@
     <link rel="stylesheet" type="text/css" href="reset.css"/>
     <link rel="stylesheet" type="text/css" href="basis.css"/>
 	<link rel="shortcut icon" type="image/png" href="lamp_icon.jpg"/>
-    <script src="jquery-latest.min.js" type="text/javascript"></script>
+    <script
+  src="https://code.jquery.com/jquery-3.1.1.min.js"
+  integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+  crossorigin="anonymous"></script>
     <script src="setup.js" type="text/javascript"></script>
     <script src="control.js" type="text/javascript"></script>
     <meta charset="ISO-8859-1">
@@ -42,7 +45,7 @@
                             <p>
                                 Please fill in your information for ordering ticket(s).
                                 </br></br></br> Name: <input type="text" id="buyer-name" placeholder="Full Name" maxlength="32" />
-                                </br>Amsterdance Member: <select id="buyer-member" class="option"><option value="1">yes</option><option value="2">no</option></select>
+                                </br>AmsterDance Member: <select id="buyer-member" class="option"><option value="1">yes</option><option value="2">no</option></select>
                                 </br> Sultan-treatment (VIP)? <select id="buyer-vip" class="option"><option value="1">Regular ticket</option><option value="2">Sultan-ticket</option></select>
                                 </br> Tickets can be send to the following e-mail adress: <input type="email" id="buyer-email" placeholder="email address" maxlength="32" />
                                 </br></br></br></br> Multiple tickets? <select id="buyer-accompanied"><option value="unaccompanied" selected>no</option><option value="accompanied">yes</option></select><div id="accompanied-sentence" class="hidden inline">
@@ -70,7 +73,7 @@
                     <div id="guest-template" class="story-internal invisible hidden">
                         <p>
                             </br> Name: <input type="text" class="buyer-name" placeholder="Full Name" maxlength="32" />
-                            </br> Amsterdam Member: <select class="buyer-member option"><option value="1">no</option><option value="2">yes</option></select>
+                            </br> AmsterDance Member: <select class="buyer-member option"><option value="1">yes</option><option value="2" selected>no</option></select>
                             </br> Sultan-treatment? <select class="buyer-vip option"><option value="1">Regular ticket</option><option value="2">Sultan-ticket</option></select>.
 
                     </div>
@@ -80,9 +83,7 @@
                         <div id="apply-button" class="story link hidden">Buy Tickets</div>
                         <div id="submit-button" class="story link hidden">Submit</div>
                     </div>
-                </div>
-
-                
+                </div>                
             </div>
         </div>
         <div id="footer2">
