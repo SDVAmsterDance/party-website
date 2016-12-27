@@ -30,7 +30,7 @@
         </div><br><br>
 
         <div class="story-internal">
-            Je betaling van &euro; {$registration->sprice()} is in goede orde ontvangen en je reservering staat hierbij vast. 
+            Je betaling van <div class="love">&euro; {$registration->sprice()}</div> is in goede orde ontvangen en je reservering staat hierbij vast. 
         </div><br><br>
 
         <div class="story-internal">
@@ -51,7 +51,7 @@
         </div><br><br>
     
         <div class="story-internal">
-            Your payment of &euro; {$registration->sprice()} has been fully received and your reservation has been fully confirmed.
+            Your payment of <div class="love">&euro; {$registration->sprice()}</div> has been fully received and your reservation has been fully confirmed.
         </div><br><br>
         
         <div class="story-internal">

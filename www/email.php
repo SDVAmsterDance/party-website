@@ -25,4 +25,3 @@ if ($registration != null && !$text) {
 	// registration was not found...
 	$tpl->render('registration-not-found');
 } 
-?>

@@ -17,16 +17,14 @@ $registrations = new Registrations;
 // loop over all registrations
 foreach ($registrations->arr() as $reg) {
     // if the registration is already confirmed, we can skip it! (or paid & not confirmed)
-    //if ($reg->confirmed() && (!$reg->paid() || $reg->payconfirmed())) continue;
-
-    // otherwise, we confirm it
-    //if (true || !$reg->confirmed()) 
-        $reg->confirm();
-    
-    // otherwise confirm the paymenf if it was made
-    //if (true || $reg->paid() && !$reg->payconfirmed())
-        $reg->confirm_payment();
+    if ($reg->confirmed() && (!$reg->paid() || $reg->payconfirmed())) continue;
 
     // we did a registration
     echo (string) $reg;
+
+    // otherwise, we confirm it
+    if (!$reg->confirmed()) $reg->confirm();
+    
+    // otherwise confirm the paymenf if it was made
+    if ($reg->paid() && !$reg->payconfirmed()) $reg->confirm_payment();
 }

@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2016-12-27 19:28:22
+/* Smarty version 3.1.31, created on 2016-12-27 19:58:07
   from "C:\Users\Michael\Downloads\Galacie-2016-2017-Website\Galacie 2016-2017 Website\www\templates\confirm-registration-txt.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5862b2c6f0e115_96840006',
+  'unifunc' => 'content_5862b9bf170327_12012606',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '452581344d28d94734ac2436b72151a3d8a76416' => 
     array (
       0 => 'C:\\Users\\Michael\\Downloads\\Galacie-2016-2017-Website\\Galacie 2016-2017 Website\\www\\templates\\confirm-registration-txt.tpl',
-      1 => 1482862300,
+      1 => 1482864955,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5862b2c6f0e115_96840006 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5862b9bf170327_12012606 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 English follows Dutch
 
@@ -51,7 +51,7 @@ SDV AmsterDance
 Dear <?php echo mb_convert_encoding(htmlspecialchars($_smarty_tpl->tpl_vars['registration']->value->buyer()->name, ENT_QUOTES, 'UTF-8', true), "HTML-ENTITIES", 'UTF-8');?>
 , 
 
-We are happy to see that you are interested in our event! With this email we confirm your ticket reservation for the Arabian Nights Gala. To complete your reservation, please transfer <?php echo $_smarty_tpl->tpl_vars['registration']->value->sprice();?>
+We are happy to see that you are interested in our event! With this email we confirm your ticket reservation for the Arabian Nights Gala. To complete your reservation, please transfer € <?php echo $_smarty_tpl->tpl_vars['registration']->value->sprice();?>
  to NL72 ABNA 0455 2572 21 in the name of SDV AmsterDance with "Gala 2017 - <?php echo mb_convert_encoding(htmlspecialchars($_smarty_tpl->tpl_vars['registration']->value->buyer()->name, ENT_QUOTES, 'UTF-8', true), "HTML-ENTITIES", 'UTF-8');?>
 " as the description.
 
@@ -61,7 +61,7 @@ if ($_smarty_tpl->tpl_vars['registration']->value->nvips() > 0) {?> of which <?p
 }
 }?>.
 
-Please be aware that if you do not transfer the amount before 9th of february 23.59 your reservation will be cancelled. After the cancellation you can still buy a ticket at the door (unless the event is sold out). A ticket at the door will cost € 17,50.
+Please be aware that if you do not transfer the amount before 9th of february 23:59 your reservation will be cancelled. After the cancellation you can still buy a ticket at the door (unless the event is sold out). A ticket at the door will cost € 17,50.
 
 Kind regards,
 Andriy, Helena, Marjolein, Philine and Tom

@@ -69,7 +69,7 @@ class Registration implements JsonSerializable {
             $this->_confirmed = $arr["confirmed"];
 
             // payment confirmation
-            $this->_paymentconfirmed = $arr["payconfirmed"];
+            $this->_payconfirmed = $arr["payconfirmed"];
             
             // we are now done, no status checks
             return;

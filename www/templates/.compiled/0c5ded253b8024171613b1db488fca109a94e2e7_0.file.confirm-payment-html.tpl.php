@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2016-12-27 19:12:07
+/* Smarty version 3.1.31, created on 2016-12-27 20:02:51
   from "C:\Users\Michael\Downloads\Galacie-2016-2017-Website\Galacie 2016-2017 Website\www\templates\confirm-payment-html.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5862aef796d6e3_26190681',
+  'unifunc' => 'content_5862badbb78718_15939587',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0c5ded253b8024171613b1db488fca109a94e2e7' => 
     array (
       0 => 'C:\\Users\\Michael\\Downloads\\Galacie-2016-2017-Website\\Galacie 2016-2017 Website\\www\\templates\\confirm-payment-html.tpl',
-      1 => 1482862276,
+      1 => 1482865364,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5862aef796d6e3_26190681 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5862badbb78718_15939587 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <html>
 <head>
@@ -55,8 +55,8 @@ function content_5862aef796d6e3_26190681 (Smarty_Internal_Template $_smarty_tpl)
         </div><br><br>
 
         <div class="story-internal">
-            Je betaling van € <?php echo $_smarty_tpl->tpl_vars['registration']->value->sprice();?>
- is in goede orde ontvangen en je reservering staat hierbij vast. 
+            Je betaling van <div class="love">&euro; <?php echo $_smarty_tpl->tpl_vars['registration']->value->sprice();?>
+</div> is in goede orde ontvangen en je reservering staat hierbij vast. 
         </div><br><br>
 
         <div class="story-internal">
@@ -78,8 +78,8 @@ function content_5862aef796d6e3_26190681 (Smarty_Internal_Template $_smarty_tpl)
         </div><br><br>
     
         <div class="story-internal">
-            Your payment of € <?php echo $_smarty_tpl->tpl_vars['registration']->value->sprice();?>
- has been fully received and your reservation has been fully confirmed.
+            Your payment of <div class="love">&euro; <?php echo $_smarty_tpl->tpl_vars['registration']->value->sprice();?>
+</div> has been fully received and your reservation has been fully confirmed.
         </div><br><br>
         
         <div class="story-internal">
