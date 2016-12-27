@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2016-12-27 20:02:51
+/* Smarty version 3.1.31, created on 2016-12-27 20:12:22
   from "C:\Users\Michael\Downloads\Galacie-2016-2017-Website\Galacie 2016-2017 Website\www\templates\confirm-payment-html.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5862badbb78718_15939587',
+  'unifunc' => 'content_5862bd1621c613_28620002',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0c5ded253b8024171613b1db488fca109a94e2e7' => 
     array (
       0 => 'C:\\Users\\Michael\\Downloads\\Galacie-2016-2017-Website\\Galacie 2016-2017 Website\\www\\templates\\confirm-payment-html.tpl',
-      1 => 1482865364,
+      1 => 1482865451,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5862badbb78718_15939587 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5862bd1621c613_28620002 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <html>
 <head>

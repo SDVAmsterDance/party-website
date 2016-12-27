@@ -240,8 +240,10 @@ class Registration implements JsonSerializable {
         // assgign the registration value
         $tpl->assign('registration', $this);
 
+        echo('confirm...');
         // simply message, might fail
         if (!$this->message("Gala Ticket", $tpl->str('confirm-registration-html'), $tpl->str('confirm-registration-txt'))) return;
+        echo('confirmed');
 
         // now confirmed
         $this->_confirmed = true;
@@ -324,8 +326,8 @@ class Registration implements JsonSerializable {
         $mail->Send();
         $mail->SmtpClose();
         
-        // send the mail
-        return $mail->IsError();
+        // check if a sending error has occurred.
+        return !$mail->IsError();
     }
 
     /**
