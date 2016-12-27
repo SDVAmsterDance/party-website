@@ -301,7 +301,6 @@ class Registration implements JsonSerializable {
         $mail = new PHPMailer;  
 
         $mail->IsSMTP();                                      // Set mailer to use SMTP
-        $mail->IsHTML();
         $mail->Host = RELAY_EMAIL_SMTP;                       // Specify main and backup SMTP servers
         $mail->SMTPAuth = true;                               // Enable SMTP authentication
         $mail->Username = RELAY_EMAIL_USER;                   // SMTP username
@@ -314,7 +313,7 @@ class Registration implements JsonSerializable {
         
         $mail->setFrom(EMAIL_FROM, EMAIL_FROM_NAME);
         $mail->addAddress($this->_email, $this->_buyer->name);     // Add a recipient
-        $mail->addReplyTo(RELAY_EMAIL_USER, EMAIL_FROM_NAME);
+        $mail->addReplyTo(EMAIL_FROM, EMAIL_FROM_NAME);
         $mail->isHTML(true);                                  // Set email format to HTML
 
         // set the subject and body
