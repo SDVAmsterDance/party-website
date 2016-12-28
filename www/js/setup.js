@@ -130,7 +130,7 @@ function checkForm() {
         //Extract name, checking length and store in data. 
         if (name.length == 0) {$(guests[i]).find(".buyer-name").addClass("error"); return false;}
         else $(guests[i]).find(".buyer-name").removeClass("error");
-        data["guests"].push({name: name, member: (member=="2"), vip: (vip=="2")});                
+        data["guests"].push({name: name, member: (member=="1"), vip: (vip=="2")});                
     }
     
     //Extract email, checking length and store in data. 
