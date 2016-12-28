@@ -82,7 +82,7 @@
         </div>
 
         <br><hr><br>
-        <center><a class="love" href="https://localhost/email.php?registration={$registration->hash()}">Webversion</a></center><br><br>
+        <center><a class="love" href="https://gala-amsterdance.tk/email.php?registration={$registration->hash()}">Webversion</a></center><br><br>
     </div>	
 </div>
 </div>
