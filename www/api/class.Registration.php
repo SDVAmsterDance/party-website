@@ -11,6 +11,7 @@
 require_once 'autoload.php';
 
 class Registration implements JsonSerializable {
+    private $_id = 0;
     /**
      *  The guests.
      */
@@ -42,6 +43,8 @@ class Registration implements JsonSerializable {
     private $_confirmed = false;
     private $_payconfirmed = false;
     
+    private $fromdb = false;
+
     /**
      *  Construct the object
      */
@@ -70,6 +73,7 @@ class Registration implements JsonSerializable {
 
             // payment confirmation
             $this->_payconfirmed = $arr["payconfirmed"];
+            $this->fromdb = true;
             
             // we are now done, no status checks
             return;
@@ -126,29 +130,27 @@ class Registration implements JsonSerializable {
      */
     public function store() {
         // get a database connection
-        $dbh = new PDO('mysql:host='.DB_HOST.';dbname='.DB_DATABASE, DB_USER, DB_PASSWORD);  
+        $dbh = new PDO('mysql:host='.DB_HOST.';dbname='.DB_DATABASE, DB_USER, DB_PASSWORD, array(PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,));  
 
-        // make the statement
-        $stmt = $dbh->prepare("INSERT INTO registrations (hash, json, email, guests, vips) VALUES (:hash, :json, :email, :guests, :vips) ON DUPLICATE KEY UPDATE json=:json");
-
-        // create the json
+         // create the json
         $json = json_encode($this);
 
         // create the hash
-        $this->_hash = md5($json . time());
+        if (!isset($this->_hash)) $this->_hash = md5($json . time());
 
         // the amount of guests
         $n_guests = count($this->_guests);
         $n_vips = count($this->vips());
 
+        // create the statement
+        $stmt = $dbh->prepare("INSERT INTO registrations (hash, json, email, guests, vips) VALUES (:hash, :json, :email, :guests, :vips) ON DUPLICATE KEY UPDATE json = :json");
+  
         // bind the parameters 
         $stmt->bindParam(':hash', $this->_hash);
         $stmt->bindParam(':json', $json);
         $stmt->bindParam(':email', $this->_email);
         $stmt->bindParam(':guests', $n_guests);
         $stmt->bindParam(':vips', $n_vips);
-
-        // execute the statement
         $stmt->execute();
     }
 
@@ -338,7 +340,7 @@ class Registration implements JsonSerializable {
         $dbh = new PDO('mysql:host='.DB_HOST.';dbname='.DB_DATABASE, DB_USER, DB_PASSWORD);  
 
         // make the statement
-        $stmt = $dbh->prepare("SELECT json, paid FROM registrations WHERE hash = :hash LIMIT 1");
+        $stmt = $dbh->prepare("SELECT id, json, paid FROM registrations WHERE hash = :hash LIMIT 1");
 
         // bind the statements
         $stmt->bindParam(':hash', $id);
@@ -357,6 +359,7 @@ class Registration implements JsonSerializable {
     
         // correct the payment info from the result
         $reg->_paid = $res['paid'];
+        $reg->_id = $res['id'];
 
         // set the hash
         $reg->_hash = $id;

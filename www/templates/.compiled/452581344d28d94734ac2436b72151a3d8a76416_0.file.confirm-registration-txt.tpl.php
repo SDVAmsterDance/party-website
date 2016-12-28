@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2016-12-27 19:58:07
+/* Smarty version 3.1.31, created on 2016-12-28 14:38:04
   from "C:\Users\Michael\Downloads\Galacie-2016-2017-Website\Galacie 2016-2017 Website\www\templates\confirm-registration-txt.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5862b9bf170327_12012606',
+  'unifunc' => 'content_5863c03ce42e26_28414617',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '452581344d28d94734ac2436b72151a3d8a76416' => 
     array (
       0 => 'C:\\Users\\Michael\\Downloads\\Galacie-2016-2017-Website\\Galacie 2016-2017 Website\\www\\templates\\confirm-registration-txt.tpl',
-      1 => 1482864955,
+      1 => 1482929465,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5862b9bf170327_12012606 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5863c03ce42e26_28414617 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 English follows Dutch
 
@@ -39,10 +39,10 @@ De reservering kan definitief gemaakt worden door € <?php echo $_smarty_tpl->t
  over te maken naar NL72 ABNA 0455257221 ten name van SDV AmsterDance, onder vermelding van "Gala 2017 - <?php echo mb_convert_encoding(htmlspecialchars($_smarty_tpl->tpl_vars['registration']->value->buyer()->name, ENT_QUOTES, 'UTF-8', true), "HTML-ENTITIES", 'UTF-8');?>
 ". 
 
-Mocht je het geld niet hebben overgemaakt voor 9 februari 23:59, dan gaat je reservering verloren. Natuurlijk kan je dan nog wel een kaartje kopen aan de deur voor € 17,50 (indien er nog kaarten beschikbaar zijn). 
+Mocht je het geld niet hebben overgemaakt voor donderdag 9 februari 23:59, dan gaat je reservering verloren. Natuurlijk kan je dan nog wel een kaartje kopen aan de deur voor € 17,50 (indien er nog kaarten beschikbaar zijn). 
         
 Dansende groeten,
-Andriy, Helena, Marjolein, Philine en Tom
+Andriy, Helena, Marjolein en Tom
 GalaCie Commissie 2016 - 2017
 SDV AmsterDance
 
@@ -61,10 +61,10 @@ if ($_smarty_tpl->tpl_vars['registration']->value->nvips() > 0) {?> of which <?p
 }
 }?>.
 
-Please be aware that if you do not transfer the amount before 9th of february 23:59 your reservation will be cancelled. After the cancellation you can still buy a ticket at the door (unless the event is sold out). A ticket at the door will cost € 17,50.
+Please be aware that if you do not transfer the amount before thursday 9th of february 23:59 your reservation will be cancelled. After the cancellation you can still buy a ticket at the door (unless the event is sold out). A ticket at the door will cost € 17,50.
 
 Kind regards,
-Andriy, Helena, Marjolein, Philine and Tom
+Andriy, Helena, Marjolein and Tom
 GalaCie Commissie 2016 - 2017
 SDV AmsterDance
 

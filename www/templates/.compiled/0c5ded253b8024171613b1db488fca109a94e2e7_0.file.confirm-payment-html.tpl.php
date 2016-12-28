@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2016-12-27 20:12:22
+/* Smarty version 3.1.31, created on 2016-12-28 14:51:53
   from "C:\Users\Michael\Downloads\Galacie-2016-2017-Website\Galacie 2016-2017 Website\www\templates\confirm-payment-html.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5862bd1621c613_28620002',
+  'unifunc' => 'content_5863c37977d7f3_45479280',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '0c5ded253b8024171613b1db488fca109a94e2e7' => 
     array (
       0 => 'C:\\Users\\Michael\\Downloads\\Galacie-2016-2017-Website\\Galacie 2016-2017 Website\\www\\templates\\confirm-payment-html.tpl',
-      1 => 1482865451,
+      1 => 1482929526,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5862bd1621c613_28620002 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5863c37977d7f3_45479280 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <html>
 <head>
@@ -65,7 +65,7 @@ function content_5862bd1621c613_28620002 (Smarty_Internal_Template $_smarty_tpl)
 
         <div class="story-internal">
             <div class="calligraphy love">D</div>ansende groeten,<br>
-            Andriy, Helena, Marjolein, Philine en Tom<br>
+            Andriy, Helena, Marjolein en Tom<br>
             GalaCie Commissie 2016 - 2017<br>
             SDV AmsterDance<br>
         </div>
@@ -87,14 +87,14 @@ function content_5862bd1621c613_28620002 (Smarty_Internal_Template $_smarty_tpl)
         </div><br><br>
 
         <div class="story-internal">
-            <div class="calligraphy love">K</div>ind regards,<br<
-            Andriy, Helena, Marjolein, Philine and Tom<br>
+            <div class="calligraphy love">K</div>ind regards,<br>
+            Andriy, Helena, Marjolein and Tom<br>
             GalaCie Commissie 2016 - 2017<br>
             SDV AmsterDance<br>
         </div>
 
         <br><hr><br>
-        <center><a class="love" href="https://localhost/email.php?registration=<?php echo $_smarty_tpl->tpl_vars['registration']->value->hash();?>
+        <center><a class="love" href="https://gala-amsterdance.tk/email.php?registration=<?php echo $_smarty_tpl->tpl_vars['registration']->value->hash();?>
 ">Webversion</a></center><br><br>
     </div>	
 </div>

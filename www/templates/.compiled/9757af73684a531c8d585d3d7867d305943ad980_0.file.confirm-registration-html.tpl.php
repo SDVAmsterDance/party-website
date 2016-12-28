@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2016-12-27 19:23:29
+/* Smarty version 3.1.31, created on 2016-12-28 14:38:04
   from "C:\Users\Michael\Downloads\Galacie-2016-2017-Website\Galacie 2016-2017 Website\www\templates\confirm-registration-html.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5862b1a133e2c6_53491866',
+  'unifunc' => 'content_5863c03cbd76a9_41932169',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '9757af73684a531c8d585d3d7867d305943ad980' => 
     array (
       0 => 'C:\\Users\\Michael\\Downloads\\Galacie-2016-2017-Website\\Galacie 2016-2017 Website\\www\\templates\\confirm-registration-html.tpl',
-      1 => 1482862426,
+      1 => 1482929581,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5862b1a133e2c6_53491866 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5863c03cbd76a9_41932169 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 <html>
 <head>
@@ -67,17 +67,17 @@ if ($_smarty_tpl->tpl_vars['registration']->value->nvips() > 0) {?> waarbij <?ph
 
         <div class="story-internal">
             <div class="calligraphy love">O</div>m je reservering definitief te maken, maak <p class="love">&euro; <?php echo $_smarty_tpl->tpl_vars['registration']->value->sprice();?>
-</p> over naar <p class="love">NL72 ABNA 0455 2572 21</p> ter name van SDV AmsterDance, onder vermelding van "Gala 2017 - <?php echo mb_convert_encoding(htmlspecialchars($_smarty_tpl->tpl_vars['registration']->value->buyer()->name, ENT_QUOTES, 'UTF-8', true), "HTML-ENTITIES", 'UTF-8');?>
+</p> over naar <p class="love">NL72 ABNA 0455 2572 21</p> ten name van SDV AmsterDance, onder vermelding van "Gala 2017 - <?php echo mb_convert_encoding(htmlspecialchars($_smarty_tpl->tpl_vars['registration']->value->buyer()->name, ENT_QUOTES, 'UTF-8', true), "HTML-ENTITIES", 'UTF-8');?>
 ".
 		</div><br><br>
 
         <div class="story-internal">
-            Mocht je het geld niet hebben overgemaakt voor 9 februari 23:59, dan gaat je reservering verloren. Natuurlijk kan je dan nog wel een kaartje kopen aan de deur voor &euro; 17,50 (indien er nog kaarten beschikbaar zijn).
+            Mocht je het geld niet hebben overgemaakt voor donderdag 9 februari 23:59, dan gaat je reservering verloren. Natuurlijk kan je dan nog wel een kaartje kopen aan de deur voor &euro; 17,50 (indien er nog kaarten beschikbaar zijn).
         </div><br><br>
 
         <div class="story-internal">
             <div class="calligraphy love">D</div>ansende groeten,<br>
-            Andriy, Helena, Marjolein, Philine en Tom<br>
+            Andriy, Helena, Marjolein en Tom<br>
             GalaCie Commissie 2016 - 2017<br>
             SDV AmsterDance<br>
         </div>
@@ -108,18 +108,18 @@ if ($_smarty_tpl->tpl_vars['registration']->value->nvips() > 0) {?> of which <?p
 		</div><br><br>
 
         <div class="story-internal">
-            Please be aware that if you do not transfer the amount before the 9th of february at 23:59, your reservation will be cancelled. After the cancellation, you can still buy a ticket at the door (unless the event is sold out). A ticket at the door will cost &euro; 17,50.
+            Please be aware that if you do not transfer the amount before Thursday the 9th of february at 23:59, your reservation will be cancelled. After the cancellation, you can still buy a ticket at the door (unless the event is sold out). A ticket at the door will cost &euro; 17,50.
         </div><br><br>
 
         <div class="story-internal">
-            <div class="calligraphy love">K</div>ind regards,<br<
-            Andriy, Helena, Marjolein, Philine and Tom<br>
+            <div class="calligraphy love">K</div>ind regards,<br>
+            Andriy, Helena, Marjolein and Tom<br>
             GalaCie Commissie 2016 - 2017<br>
             SDV AmsterDance<br>
         </div>
 
         <br><hr><br>
-        <center><a class="love" href="https://localhost/email.php?registration=<?php echo $_smarty_tpl->tpl_vars['registration']->value->hash();?>
+        <center><a class="love" href="https://gala-amsterdance.tk/email.php?registration=<?php echo $_smarty_tpl->tpl_vars['registration']->value->hash();?>
 ">Webversion</a></center><br><br>
     </div>	
 </div>

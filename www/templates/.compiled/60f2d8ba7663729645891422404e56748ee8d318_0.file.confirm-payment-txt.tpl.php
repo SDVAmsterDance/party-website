@@ -1,18 +1,18 @@
 <?php
-/* Smarty version 3.1.31, created on 2016-12-27 19:32:21
+/* Smarty version 3.1.31, created on 2016-12-28 14:51:53
   from "C:\Users\Michael\Downloads\Galacie-2016-2017-Website\Galacie 2016-2017 Website\www\templates\confirm-payment-txt.tpl" */
 
 /* @var Smarty_Internal_Template $_smarty_tpl */
 if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   'version' => '3.1.31',
-  'unifunc' => 'content_5862b3b52bbab8_19843418',
+  'unifunc' => 'content_5863c379844cd2_57344594',
   'has_nocache_code' => false,
   'file_dependency' => 
   array (
     '60f2d8ba7663729645891422404e56748ee8d318' => 
     array (
       0 => 'C:\\Users\\Michael\\Downloads\\Galacie-2016-2017-Website\\Galacie 2016-2017 Website\\www\\templates\\confirm-payment-txt.tpl',
-      1 => 1482862423,
+      1 => 1482929405,
       2 => 'file',
     ),
   ),
@@ -20,7 +20,7 @@ if ($_smarty_tpl->_decodeProperties($_smarty_tpl, array (
   array (
   ),
 ),false)) {
-function content_5862b3b52bbab8_19843418 (Smarty_Internal_Template $_smarty_tpl) {
+function content_5863c379844cd2_57344594 (Smarty_Internal_Template $_smarty_tpl) {
 ?>
 English follows Dutch
 --------------------------------------------------------------------------------
@@ -34,7 +34,7 @@ Je betaling van € <?php echo $_smarty_tpl->tpl_vars['registration']->value->sp
 We wensen je veel plezier tijdens het Arabian Nights Gala!
         
 Dansende groeten,
-Andriy, Helena, Marjolein, Philine en Tom
+Andriy, Helena, Marjolein en Tom
 GalaCie Commissie 2016 - 2017
 SDV AmsterDance
 
@@ -49,7 +49,7 @@ Your payment of € <?php echo $_smarty_tpl->tpl_vars['registration']->value->sp
 We wish you a magical evening at the Arabian Nights Gala!
 
 Kind regards,
-Andriy, Helena, Marjolein, Philine and Tom
+Andriy, Helena, Marjolein and Tom
 GalaCie Commissie 2016 - 2017
 SDV AmsterDance
 
