@@ -75,7 +75,7 @@
         </div><br><br>
 
         <div class="story-internal">
-            <div class="calligraphy love">K</div>ind regards,<br<
+            <div class="calligraphy love">K</div>ind regards,<br>
             Andriy, Helena, Marjolein and Tom<br>
             GalaCie Commissie 2016 - 2017<br>
             SDV AmsterDance<br>
