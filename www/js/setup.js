@@ -161,5 +161,12 @@ function fixStatus() {
             
         // we need to update the maximum amount of guests
         $("#buyer-guests").attr('max', data["regular"] - 1); 
+        
+        // if there are vips, keep the choice
+        if (data['vip'] > 0) return;
+
+        // otherwise we hide it
+        $('.buyer-vip').addClass('hidden');
+        $('#buyer-vip').addClass('hidden');
     });
 }

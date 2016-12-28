@@ -38,7 +38,7 @@
         </div><br><br>
 
         <div class="story-internal">
-            <div class="calligraphy love">O</div>m je reservering definitief te maken, maak <p class="love">&euro; {$registration->sprice()}</p> over naar <p class="love">NL72 ABNA 0455 2572 21</p> ter name van SDV AmsterDance, onder vermelding van "Gala 2017 - {$registration->buyer()->name|escape:'htmlall'}".
+            <div class="calligraphy love">O</div>m je reservering definitief te maken, maak <p class="love">&euro; {$registration->sprice()}</p> over naar <p class="love">NL72 ABNA 0455 2572 21</p> ten name van SDV AmsterDance, onder vermelding van "Gala 2017 - {$registration->buyer()->name|escape:'htmlall'}".
 		</div><br><br>
 
         <div class="story-internal">
@@ -47,7 +47,7 @@
 
         <div class="story-internal">
             <div class="calligraphy love">D</div>ansende groeten,<br>
-            Andriy, Helena, Marjolein, Philine en Tom<br>
+            Andriy, Helena, Marjolein en Tom<br>
             GalaCie Commissie 2016 - 2017<br>
             SDV AmsterDance<br>
         </div>
@@ -76,7 +76,7 @@
 
         <div class="story-internal">
             <div class="calligraphy love">K</div>ind regards,<br<
-            Andriy, Helena, Marjolein, Philine and Tom<br>
+            Andriy, Helena, Marjolein and Tom<br>
             GalaCie Commissie 2016 - 2017<br>
             SDV AmsterDance<br>
         </div>
