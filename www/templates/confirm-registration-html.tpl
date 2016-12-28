@@ -42,7 +42,7 @@
 		</div><br><br>
 
         <div class="story-internal">
-            Mocht je het geld niet hebben overgemaakt voor 9 februari 23:59, dan gaat je reservering verloren. Natuurlijk kan je dan nog wel een kaartje kopen aan de deur voor &euro; 17,50 (indien er nog kaarten beschikbaar zijn).
+            Mocht je het geld niet hebben overgemaakt voor donderdag 9 februari 23:59, dan gaat je reservering verloren. Natuurlijk kan je dan nog wel een kaartje kopen aan de deur voor &euro; 17,50 (indien er nog kaarten beschikbaar zijn).
         </div><br><br>
 
         <div class="story-internal">
@@ -71,7 +71,7 @@
 		</div><br><br>
 
         <div class="story-internal">
-            Please be aware that if you do not transfer the amount before the 9th of february at 23:59, your reservation will be cancelled. After the cancellation, you can still buy a ticket at the door (unless the event is sold out). A ticket at the door will cost &euro; 17,50.
+            Please be aware that if you do not transfer the amount before Thursday the 9th of february at 23:59, your reservation will be cancelled. After the cancellation, you can still buy a ticket at the door (unless the event is sold out). A ticket at the door will cost &euro; 17,50.
         </div><br><br>
 
         <div class="story-internal">

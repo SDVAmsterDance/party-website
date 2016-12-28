@@ -39,7 +39,7 @@
 
         <div class="story-internal">
             <div class="calligraphy love">D</div>ansende groeten,<br>
-            Andriy, Helena, Marjolein, Philine en Tom<br>
+            Andriy, Helena, Marjolein en Tom<br>
             GalaCie Commissie 2016 - 2017<br>
             SDV AmsterDance<br>
         </div>
@@ -59,8 +59,8 @@
         </div><br><br>
 
         <div class="story-internal">
-            <div class="calligraphy love">K</div>ind regards,<br<
-            Andriy, Helena, Marjolein, Philine and Tom<br>
+            <div class="calligraphy love">K</div>ind regards,<br>
+            Andriy, Helena, Marjolein and Tom<br>
             GalaCie Commissie 2016 - 2017<br>
             SDV AmsterDance<br>
         </div>

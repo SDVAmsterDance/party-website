@@ -8,7 +8,7 @@ Je betaling van € {$registration->sprice()} is in goede orde ontvangen en je r
 We wensen je veel plezier tijdens het Arabian Nights Gala!
         
 Dansende groeten,
-Andriy, Helena, Marjolein, Philine en Tom
+Andriy, Helena, Marjolein en Tom
 GalaCie Commissie 2016 - 2017
 SDV AmsterDance
 
@@ -21,7 +21,7 @@ Your payment of € {$registration->sprice()} has been fully received and your r
 We wish you a magical evening at the Arabian Nights Gala!
 
 Kind regards,
-Andriy, Helena, Marjolein, Philine and Tom
+Andriy, Helena, Marjolein and Tom
 GalaCie Commissie 2016 - 2017
 SDV AmsterDance
 
