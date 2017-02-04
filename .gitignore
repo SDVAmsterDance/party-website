@@ -50,6 +50,7 @@ Temporary Items
 
 # lets not share this...
 .htpasswd
+www/templates/.compiled/*.php
 
 # composer - we apparantly do not want the vendor Folder
 www/api/vendor/
