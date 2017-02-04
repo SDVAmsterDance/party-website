@@ -48,5 +48,8 @@ Network Trash Folder
 Temporary Items
 .apdisk
 
+# lets not share this...
+.htpasswd
+
 # composer - we apparantly do not want the vendor Folder
 www/api/vendor/
