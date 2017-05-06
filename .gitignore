@@ -54,3 +54,8 @@ www/templates/.compiled/*.php
 
 # composer - we apparantly do not want the vendor Folder
 www/api/vendor/
+
+# django ignores
+*.pyc
+__pycache__/
+local_settings
