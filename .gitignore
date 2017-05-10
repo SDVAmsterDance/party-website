@@ -54,3 +54,14 @@ www/templates/.compiled/*.php
 
 # composer - we apparantly do not want the vendor Folder
 www/api/vendor/
+
+# python files to ignore
+__pycache__/
+*.pyc
+
+# local test files
+*.db
+db.sqlite
+
+# NEVER do the actual config file
+config.ini
