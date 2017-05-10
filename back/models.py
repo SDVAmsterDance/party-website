@@ -32,6 +32,9 @@ class Person(Base):
 
 # this is for a registration
 class Registration(Base):
+    """
+    Class for a registration.
+    """
     __tablename__ = 'registrations'
     id = Column(Integer, primary_key=True)
 
@@ -60,10 +63,3 @@ class Action(Base):
 
     # identifier for the action that was actually performed
     action = Column(Integer)  # this is an integer for the action
-
-
-class Locks(Base):
-    __tablename__ = 'locks'
-    id = Column(Integer, primary_key=True)
-    ip = Column(String(45))  # so it can store both ipv6 and ipv4
-    expire = Column(DateTime)

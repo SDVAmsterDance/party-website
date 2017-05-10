@@ -15,7 +15,7 @@ if __name__ == '__main__':
         {
             'id': 1,
             'email': 'debug@test.com',
-            'token': 'test-registration'
+            'token': 'test'
         }
     ]
 
@@ -33,7 +33,8 @@ if __name__ == '__main__':
             'last_name': 'Quimby',
             'amsterdance': True,
             'vip': False,
-            'registration': 1
+            'registration': 1,
+            'registered': True
         }
     ]
 

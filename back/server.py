@@ -1,7 +1,8 @@
-from flask import Flask, send_from_directory, request, send_file, Response, jsonify
+from flask import Flask, send_from_directory, request, send_file, Response, jsonify, render_template
 from flask_sqlalchemy import SQLAlchemy
 from models import Base, Person, Registration
 from werkzeug.routing import Rule
+
 import configparser
 import os
 
@@ -34,16 +35,18 @@ assert config.getint("server", "vips", fallback=0) <= config.getint(
 # we create the database
 db = SQLAlchemy(app)
 
-# we may be in debug mode, in which case we add a debug endpoint for files!
+
+# possible prefix
+prefix = '/api' if app.debug else ''
+
+# we add our endpoints here
+app.url_map.add(
+    Rule(prefix + '/registration/', endpoint='registration', methods=['POST']))
+app.url_map.add(Rule(prefix + '/status/', endpoint='status'))
+
+# we import everything from the debug as well, if needed
 if app.debug:
-    app.url_map.add(Rule('/<path:path>', endpoint='static_debug'))
-
-
-@app.endpoint('static_debug')
-def serve_static_debug(path):
-    # this is as UNSAFE AS IT COMES! luckily we have some trust in ourselves, but this should NEVER
-    # be enabled in production
-    return send_file(os.path.normpath(os.path.join('../www/', path)))
+    from debug import *
 
 
 class Status():
@@ -65,7 +68,7 @@ class Status():
         return min(config.getint("server", "vips", fallback=0) - Status.vips_sold(), Status.open())
 
 
-@app.route('/status/')
+@app.endpoint('status')
 def status():
     """
     View for the current status, which supplies the amount of tickets
@@ -79,27 +82,14 @@ def status():
     })
 
 
-@app.route('/registration/locks/<string:uid>/', methods=['DELETE'])
-def unlock(uid):
-    return 'not implemented'
+@app.endpoint('registration')
+def register():
+    pass
 
 
-@app.route('/registration/locks/', methods=['POST'])
-def lock():
-    """
-    Lock a certain amount of tickets, but we're going to be cautious. There
-    may be Dirks trying to exploit this system and locking anybody else out
-    of tickets, but we want people on the same network to be able to actually
-    register some tickets.
-
-    Therefor, a lock timout of 15 minutes will suffice, with a maximum of 5
-    locks per IP and 10 tickets per lock. Yes, in theory this could still lock
-    50 tickets from a single IP, but once we reach that point we should just
-    block the associated IP or move it down.
-    """
-    # the uid
-    return 'not implemented'
-
+@app.endpoint('webversion')
+def webversion(token):
+    pass
 
 if __name__ == "__main__":
     # run the app
